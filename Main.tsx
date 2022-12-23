@@ -3,8 +3,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from './types';
 import { Auth, ForgotPassword, ResetPassword, ResetSuccess, VerifyResetPassword } from './screens/Auth';
 import { Country, NewsSource, NewsTopics, OnBoarding } from './screens';
-import { Home, Profile } from "./screens/Home"
+import { Profile } from "./screens/Home"
 import NewsType from './screens/NewsType';
+import Home from './screens/Home/Home';
 
 
 

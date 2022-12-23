@@ -1,4 +1,4 @@
-export { default as Home } from "./Home";
+// export { default as Home } from "./Home";
 export { default as HomeScreen } from "./HomeScreen";
 export { default as Bookmark } from "./Bookmark";
 export { default as Profile } from "./Profile";

@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTheme } from '../../utils/theme'
 import { globalStyles } from '../../constants/styles'
 
+
 const Profile = () => {
   const { dark } = useContext(Context) as TContext
   const navigation = useNavigation()
@@ -35,6 +36,8 @@ const Profile = () => {
           <Text style={{ color: useTheme(dark).defautlText }}>Username</Text>
           <View style={[globalStyles.inputWrapper, { backgroundColor: useTheme(dark).secBg }]}>
             <TextInput
+              style={globalStyles.input}
+              keyboardType="default"
               placeholder='Username'
               placeholderTextColor={useTheme(dark).inputColor}
             />
@@ -44,6 +47,8 @@ const Profile = () => {
           <Text style={{ color: useTheme(dark).defautlText }}>Full Name</Text>
           <View style={[globalStyles.inputWrapper, { backgroundColor: useTheme(dark).secBg }]}>
             <TextInput
+              style={globalStyles.input}
+              keyboardType="default"
               placeholder='Full Name'
               placeholderTextColor={useTheme(dark).inputColor}
             />
@@ -54,26 +59,29 @@ const Profile = () => {
           <View style={[globalStyles.inputWrapper, { backgroundColor: useTheme(dark).secBg }]}>
             <TextInput
               placeholder='Email'
+              keyboardType="email-address"
               placeholderTextColor={useTheme(dark).inputColor}
-              style={[globalStyles.inputField, { color: useTheme(dark).defautlText }]} />
+              style={[globalStyles.inputField, globalStyles.input, { color: useTheme(dark).defautlText }]} />
             <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }}>
               <Ionicons name="mail" size={18} color={useTheme(dark).inputColor} />
             </TouchableOpacity>
           </View>
         </View>
-        <View >
+        <View>
           <Text style={{ color: useTheme(dark).defautlText }}>Phone Number</Text>
           <View style={[globalStyles.inputWrapper, { backgroundColor: useTheme(dark).secBg }]}>
             <TextInput
+              keyboardType="phone-pad"
               placeholder='Phone Number'
               placeholderTextColor={useTheme(dark).inputColor}
-              style={[globalStyles.inputField, { color: useTheme(dark).defautlText }]} />
+              style={[globalStyles.inputField, globalStyles.input, { color: useTheme(dark).defautlText }]} />
             <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialCommunityIcons name="phone" size={18} color={useTheme(dark).inputColor} />
             </TouchableOpacity>
           </View>
         </View>
       </View>
+
 
       {/* modal */}
       <Modal
@@ -104,6 +112,7 @@ const Profile = () => {
           </View>
         </View>
       </Modal>
+
       {/* button */}
       <View style={[styles.bottomWrapper, { shadowColor: useTheme(dark).defautlText, }]}>
         <TouchableOpacity
@@ -112,6 +121,7 @@ const Profile = () => {
           <Text style={{ color: useTheme(dark).white }}>Continue</Text>
         </TouchableOpacity>
       </View>
+
     </SafeAreaView >
   )
 }
@@ -129,6 +139,9 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 100,
     position: "relative",
+  },
+  input: {
+    flex: 1
   },
   bottomWrapper: {
     justifyContent: "center",

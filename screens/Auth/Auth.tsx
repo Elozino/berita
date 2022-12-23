@@ -7,6 +7,7 @@ import { useTheme } from '../../utils/theme'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native';
 import { TContext } from '../../types'
+import { globalStyles } from '../../constants/styles'
 
 
 
@@ -58,7 +59,7 @@ const Auth: FC = () => {
               placeholderTextColor={useTheme(dark).inputColor}
               keyboardType="default"
               secureTextEntry
-              style={{ flex: 1 }}
+              style={{ flex: 1}}
             />
             <MaterialIcons name="visibility" size={20} color="gray" />
           </View>

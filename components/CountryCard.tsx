@@ -4,7 +4,15 @@ import { Context } from '../context/ContextApp'
 import { TContext } from '../types'
 import { useTheme } from '../utils/theme'
 
-const CountryCard = ({ country }) => {
+
+interface IProps {
+  country: {
+    name: { common: string },
+    flags: { png: string },
+    cca2: string
+  }
+}
+const CountryCard = ({ country }: IProps) => {
   const { dark } = useContext(Context) as TContext
   return (
     <TouchableOpacity style={[styles.container, { backgroundColor: useTheme(dark).secBg }]}>

@@ -6,16 +6,18 @@ import { TContext } from '../types'
 import { Context } from '../context/ContextApp'
 
 interface IProps {
-  topic: string;
-  image: string
+  data: {
+    topic: string;
+    image: any;
+  }
 }
 
-const TopicCard = ({ topic }) => {
+const TopicCard = ({ data }: IProps) => {
   const { dark } = useContext(Context) as TContext
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
   return (
     <TouchableHighlight style={styles.container} onPress={() => setToggleCheckBox(!toggleCheckBox)}>
-      <ImageBackground source={topic.image} resizeMode="cover" style={styles.image}>
+      <ImageBackground source={data.image} resizeMode="cover" style={styles.image}>
         <View style={styles.checkbox}>
           <CheckBox
             checked={toggleCheckBox}
@@ -23,7 +25,7 @@ const TopicCard = ({ topic }) => {
             disabled={false}
           />
         </View>
-        <Text style={{ color: useTheme(dark).defautlText, ...styles.text }}>{topic.topic}</Text>
+        <Text style={{ color: useTheme(dark).defautlText, ...styles.text }}>{data.topic}</Text>
       </ImageBackground>
     </TouchableHighlight>
   )

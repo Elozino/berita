@@ -5,7 +5,13 @@ import { useTheme } from '../utils/theme'
 import { Context } from '../context/ContextApp'
 import { TContext } from '../types'
 
-const NewsSourceCard = ({ source }) => {
+
+interface IProps {
+  source: {
+    name: string,
+  }
+}
+const NewsSourceCard = ({ source }: IProps) => {
   const { dark } = useContext(Context) as TContext
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
 

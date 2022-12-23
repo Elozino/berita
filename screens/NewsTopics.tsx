@@ -36,19 +36,17 @@ const NewsTopics = () => {
         data={topics}
         keyExtractor={(_, i) => i.toFixed()}
         renderItem={({ item }) => (
-          <TopicCard topic={item} />
+          <TopicCard data={item} />
         )}
-        contentContainerStyle={{ paddingHorizontal: 20 }}
         numColumns={2}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingHorizontal: 20 }}
         columnWrapperStyle={{
           flex: 1,
           justifyContent: "space-between",
           paddingBottom: 15
         }}
       />
-      {/* {
-        topics.map((item, i) => <TopicCard key={i} topic={item} />)
-      } */}
 
       {/* button */}
       <StickyBottomButton navigatingTo={"NewsSource"} />

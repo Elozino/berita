@@ -23,7 +23,10 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: 20,
     marginVertical: 10,
   },
+  input: {
+    flex: 1,
+  },
   inputField: {
-    flex: 1
+    flex: 1,
   },
 });
