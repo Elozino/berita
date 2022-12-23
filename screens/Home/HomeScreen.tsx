@@ -8,13 +8,15 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { globalStyles } from '../../constants/styles'
 import { topics } from '../../constants/data'
 import NewsTopics from '../NewsTopics'
+import NewsCard from '../../components/NewsCard'
+import FeaturedCard from '../../components/FeaturedCard'
 
 const HomeScreen = () => {
   const { dark } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, padding: 20 }}>
+    <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
       {/* header */}
       <View style={styles.header}>
         <Text style={{ ...styles.headerText, color: useTheme(dark).defautlText }}>Berita</Text>
@@ -40,30 +42,21 @@ const HomeScreen = () => {
         </TouchableHighlight>
       </View>
 
-      <ScrollView style={{ flex: 1 }}>
-        {/* features header */}
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}
+        alwaysBounceHorizontal={true}
+        bounces={true}
+        decelerationRate="fast">
+        {/* featured section */}
         <View>
-          {/* featured section */}
+          {/* features header */}
           <View style={{ ...styles.header }}>
             <Text style={{ color: useTheme(dark).defautlText, fontWeight: "500" }}>Featured</Text>
             <Pressable>
               <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>See all</Text>
             </Pressable>
           </View>
-          <View style={{ ...styles.featureImage }}>
-            <Image
-              source={require("../../assets/images/new3.png")}
-              style={{ ...styles.image }}
-            />
-            <View style={{ alignItems: "flex-start", flex: 1, justifyContent: "flex-end" }}>
-              <Text style={{ color: useTheme(dark).defautlText, fontWeight: "bold", marginBottom: 10 }}>News Description | Header</Text>
-              <Pressable
-                style={{ backgroundColor: useTheme(dark).appColor, paddingHorizontal: 15, paddingVertical: 7, borderRadius: 20 }}
-                onPress={() => Linking.openURL("www.google.com")}>
-                <Text style={{ color: useTheme(dark).defautlText, fontWeight: "bold", fontSize: 12 }}>Read More</Text>
-              </Pressable>
-            </View>
-          </View>
+          {/* feature card */}
+          <FeaturedCard />
         </View>
 
         {/* news section */}
@@ -75,6 +68,7 @@ const HomeScreen = () => {
             </Pressable>
           </View>
 
+          {/* type of news slider */}
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}
             alwaysBounceHorizontal={true}
             bounces={true}
@@ -93,18 +87,15 @@ const HomeScreen = () => {
               </TouchableHighlight>
             ))}
           </ScrollView>
-          {/* <FlatList
-            data={topics}
-            keyExtractor={(_, i) => i.toFixed()}
-            renderItem={({ item }) => <Text>{item.topic}</Text>}
-            showsVerticalScrollIndicator={false}
-            // columnWrapperStyle={{
-              //   marginBottom: 10
-              // }}
-            /> */}
+
+          {/* news cards */}
+          <View style={{ marginTop: 10 }}>
+            {
+              topics.map(((item, i) => <NewsCard key={i} data={item} />))
+            }
+          </View>
         </View>
       </ScrollView>
-
     </SafeAreaView>
   )
 }
@@ -124,24 +115,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  featureImage: {
-    borderRadius: 10,
-    overflow: "hidden",
-    position: "relative",
-    width: "100%",
-    height: 200,
-    marginVertical: 15,
-    padding: 20,
-  },
-  image: {
-    position: "absolute",
-    resizeMode: "cover",
-  },
   newsTopic: {
     paddingHorizontal: 15,
     paddingVertical: 5,
     borderRadius: 20,
     borderWidth: 1,
-    // marginRight: 5,
   }
 })

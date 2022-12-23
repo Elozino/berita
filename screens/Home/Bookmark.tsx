@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import React, { useContext } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TContext } from '../../types'
@@ -11,6 +11,10 @@ const Bookmark = () => {
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1 }}>
       <Text>Bookmark</Text>
+      <ActivityIndicator />
+      <ActivityIndicator size="large" />
+      <ActivityIndicator size="small" color="#0000ff" />
+      <ActivityIndicator size="large" color="#00ff00" />
     </SafeAreaView>
   )
 }
