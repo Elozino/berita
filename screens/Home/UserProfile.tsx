@@ -30,7 +30,7 @@ const UserProfile = () => {
             <MaterialIcons name="edit" size={24} color={useTheme(dark).white} />
           </TouchableHighlight>
         </View>
-        <Text style={{ color: useTheme(dark).defautlText, marginTop: 20, fontSize: 22, fontWeight: "bold" }}>Elozino Ovedhe</Text>
+        <Text style={{ color: useTheme(dark).defautlText, marginTop: 20, fontSize: 22, fontWeight: "bold" }}>Elozino A. Ovedhe</Text>
       </View>
 
 
