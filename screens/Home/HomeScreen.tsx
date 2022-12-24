@@ -105,7 +105,8 @@ export default HomeScreen
 const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   headerText: {
     fontSize: 18,

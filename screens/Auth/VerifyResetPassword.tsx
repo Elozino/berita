@@ -1,10 +1,14 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { useContext } from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
+import { useTheme } from '../../utils/theme'
+import { TContext } from '../../types'
+import { Context } from '../../context/ContextApp'
 
 const VerifyResetPassword = () => {
   const navigation = useNavigation()
+  const { dark } = useContext(Context) as TContext
   return (
     <SafeAreaView style={styles.container}>
       {/* header */}
@@ -22,7 +26,7 @@ const VerifyResetPassword = () => {
             <TextInput
               value=''
               onChangeText={() => { }}
-              keyboardType="number"
+              keyboardType="phone-pad"
               style={{ flex: 1 }}
             />
           </View>
@@ -30,7 +34,7 @@ const VerifyResetPassword = () => {
             <TextInput
               value=''
               onChangeText={() => { }}
-              keyboardType="number"
+              keyboardType="phone-pad"
               style={{ flex: 1 }}
             />
           </View>
@@ -38,7 +42,7 @@ const VerifyResetPassword = () => {
             <TextInput
               value=''
               onChangeText={() => { }}
-              keyboardType="number"
+              keyboardType="phone-pad"
               style={{ flex: 1 }}
             />
           </View>
@@ -46,7 +50,7 @@ const VerifyResetPassword = () => {
             <TextInput
               value=''
               onChangeText={() => { }}
-              keyboardType="number"
+              keyboardType="phone-pad"
               style={{ flex: 1 }}
             />
           </View>

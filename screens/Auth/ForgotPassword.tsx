@@ -5,9 +5,10 @@ import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Context } from '../../context/ContextApp'
 import { useTheme } from '../../utils/theme'
+import { TContext } from '../../types'
 
 const ForgotPassword = () => {
-  const { dark } = useContext(Context)
+  const { dark } = useContext(Context) as TContext
   const navigation = useNavigation()
   return (
     <SafeAreaView>

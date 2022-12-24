@@ -6,10 +6,11 @@ import { useTheme } from '../../utils/theme'
 import { useNavigation } from '@react-navigation/native'
 import { TextInput } from 'react-native-gesture-handler'
 import { Context } from '../../context/ContextApp'
+import { TContext } from '../../types'
 
 const ResetPassword = () => {
   const navigation = useNavigation()
-  const { dark } = useContext(Context)
+  const { dark } = useContext(Context) as TContext
   return (
     <SafeAreaView>
       {/* header */}
