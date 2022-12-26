@@ -27,7 +27,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.elozino.Berita",
+      "package": "com.elozino.berita",
       "googleServicesFile": "./google-services.json"
     },
     "web": {
