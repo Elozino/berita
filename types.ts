@@ -27,6 +27,8 @@ export type RouteScreenProps = {
   navigate: NavigationProp<any, any>;
 };
 
+
+// TYPES FOR STATE MANAGEMENT (ContextAPI)
 export type TContext = {
   dark: boolean;
   setDark: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,19 +36,31 @@ export type TContext = {
   setErrorMsg: React.Dispatch<React.SetStateAction<boolean>>;
   loginMode: string;
   setLoginMode: React.Dispatch<React.SetStateAction<string>>;
-  newsType: string;
-  setNewsType: React.Dispatch<React.SetStateAction<string>>;
-  country: string;
-  setCountry: React.Dispatch<React.SetStateAction<string>>;
-};
-
-export type Auth = {
-  email: string;
-  password: string;
-};
-
-export type ProfileData = {
-  fullname: string;
-  username: string;
-  profilePicture: string;
+  userAuthInput: {
+    email: string;
+    password: string;
+  };
+  setUserAuthInput: React.Dispatch<
+    React.SetStateAction<{
+      email: string;
+      password: string;
+    }>
+  >;
+  userInfo: {
+    fullname: string;
+    username: string;
+    telephone: string;
+    profilePicture: string;
+    country: string;
+  };
+  setUserInfo: React.Dispatch<
+    React.SetStateAction<{
+      fullname: string;
+      username: string;
+      telephone: string;
+      profilePicture: string;
+      country: string;
+      newsType: string;
+    }>
+  >;
 };

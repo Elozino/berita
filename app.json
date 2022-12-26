@@ -4,11 +4,11 @@
     "slug": "Berita",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/berita.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/illusAsset.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -27,11 +27,18 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.elozino.Berita"
+      "package": "com.elozino.Berita",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": [
+      "@react-native-firebase/app",
+      "@react-native-google-signin/google-signin"
+      // "@react-native-firebase/perf",
+      // "@react-native-firebase/crashlytics"
+    ],
     "extra": {
       "eas": {
         "projectId": "1321a611-2821-4195-82ca-ad0ec99ca1e7"

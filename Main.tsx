@@ -11,7 +11,7 @@ import Home from './screens/Home/Home';
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
-export default function App() {
+export default function Main() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ header: () => null }}>

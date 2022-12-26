@@ -3,12 +3,23 @@ import { TContext } from '../types'
 
 export const Context = createContext<TContext | null>(null)
 
-const ContextApp: FC = ({ children }) => {
+const ContextApp = ({ children }: any) => {
   const [dark, setDark] = useState(true)
   const [errorMsg, setErrorMsg] = useState(false)
   const [loginMode, setLoginMode] = useState("signup")
-  const [newsType, setNewsType] = useState("")
-  const [country, setCountry] = useState("")
+  const [userAuthInput, setUserAuthInput] = useState({
+    email: "",
+    password: ""
+  })
+  const [userInfo, setUserInfo] = useState({
+    fullname: "",
+    username: "",
+    telephone: "",
+    profilePicture: "",
+    country: "",
+    newsType: ""
+  })
+
   return (
     <Context.Provider
       value={{
@@ -18,10 +29,10 @@ const ContextApp: FC = ({ children }) => {
         setErrorMsg,
         loginMode,
         setLoginMode,
-        newsType,
-        setNewsType,
-        country,
-        setCountry
+        userAuthInput,
+        setUserAuthInput,
+        userInfo,
+        setUserInfo,
       }}
     >
       {children}

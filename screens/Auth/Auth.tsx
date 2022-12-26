@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native';
 import { TContext } from '../../types'
 import { globalStyles } from '../../constants/styles'
+// import { onGoogleButtonPress } from '../../utils/googleAuth'
 
 
 
@@ -92,7 +93,9 @@ const Auth: FC = () => {
             <Text style={{ ...styles.firebaseAuthButtonText, color: useTheme(dark).defautlText }}>
               Facebook</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ ...styles.firebaseAuthButton, backgroundColor: useTheme(dark).secBg }}>
+          <TouchableOpacity 
+          // onPress={()=> onGoogleButtonPress().then(()=> console.log("Signed in with Google!"))}
+          style={{ ...styles.firebaseAuthButton, backgroundColor: useTheme(dark).secBg }}>
             <MaterialCommunityIcons name="google" size={20} />
             <Text style={{ ...styles.firebaseAuthButtonText, color: useTheme(dark).defautlText, }}>Google</Text>
           </TouchableOpacity>

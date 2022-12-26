@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "706615864321",
+    "project_id": "fir-witheverything",
+    "storage_bucket": "fir-witheverything.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706615864321:android:c5b1073ef2ff253ad16400",
+        "android_client_info": {
+          "package_name": "com.elozino.berita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706615864321-2a5ne38ov8mgj2n89t8t98uehhv593er.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elozino.berita",
+            "certificate_hash": "a7dad551961939627a9217f55dbb057698155049"
+          }
+        },
+        {
+          "client_id": "706615864321-mdcsf072f3rbts158unj1dfs3q5adlmd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elozino.berita",
+            "certificate_hash": "0748642ba8378876156a0c2fb676daac2c4f4b75"
+          }
+        },
+        {
+          "client_id": "706615864321-abc57ra8d54952v9d6q9hiu46h4c7emh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGE_Gin2kq5sE3HZjzwI3VwqkByL1CEIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706615864321-abc57ra8d54952v9d6q9hiu46h4c7emh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
