@@ -7,6 +7,7 @@ import { TContext } from '../../types';
 import { Context } from '../../context/ContextApp';
 import { useTheme } from '../../utils/theme';
 import { StatusBar } from 'expo-status-bar';
+import { BookmarkContainer, HomeContainer, ListsContainer, ProfileContainer, SearchContainer } from '../../containers';
 
 
 const Tab = createBottomTabNavigator();
@@ -14,10 +15,10 @@ const Tab = createBottomTabNavigator();
 const Home: FC = () => {
   const { dark } = useContext(Context) as TContext
   return (
-    <View style={{flex: 1,  backgroundColor: useTheme(dark).bg}}>
+    <View style={{ flex: 1, backgroundColor: useTheme(dark).bg }}>
       <StatusBar style='light' />
       <Tab.Navigator
-        initialRouteName="HomeScreen"
+        initialRouteName="HomeContainer"
         screenOptions={{
           header: () => null,
           tabBarActiveTintColor: useTheme(dark).appColor,
@@ -31,14 +32,14 @@ const Home: FC = () => {
           },
         }}
       >
-        <Tab.Screen name="HomeScreen" component={HomeScreen}
+        <Tab.Screen name="HomeContainer" component={HomeContainer}
           options={{
             tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" color={color} size={size + 5} />
             ),
           }} />
-        <Tab.Screen name="Search" component={Search}
+        <Tab.Screen name="SearchContainer" component={SearchContainer}
           options={{
             tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
@@ -46,7 +47,7 @@ const Home: FC = () => {
             ),
           }}
         />
-        <Tab.Screen name="Bookmark" component={Bookmark}
+        <Tab.Screen name="BookmarkContainer" component={BookmarkContainer}
           options={{
             tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
@@ -54,7 +55,7 @@ const Home: FC = () => {
             ),
           }}
         />
-        <Tab.Screen name="Lists" component={Lists}
+        <Tab.Screen name="ListsContainer" component={ListsContainer}
           options={{
             tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (
@@ -62,7 +63,7 @@ const Home: FC = () => {
             ),
           }}
         />
-        <Tab.Screen name="UserProfile" component={UserProfile}
+        <Tab.Screen name="ProfileContainer" component={ProfileContainer}
           options={{
             tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (

@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { useTheme } from '../../utils/theme'
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
 
 
 const Bookmark = () => {

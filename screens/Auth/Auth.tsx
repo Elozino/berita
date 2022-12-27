@@ -7,16 +7,13 @@ import { useTheme } from '../../utils/theme'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native';
 import { TContext } from '../../types'
-import { globalStyles } from '../../constants/styles'
-// import { onGoogleButtonPress } from '../../utils/googleAuth'
-
+import { onGoogleButtonPress } from '../../utils/googleAuth'
 
 
 
 const Auth: FC = () => {
   const { dark, errorMsg, loginMode, setLoginMode } = useContext(Context) as TContext
   const navigation = useNavigation()
-
 
   return (
     <SafeAreaView style={{ ...styles.container, backgroundColor: useTheme(dark).bg }}>
@@ -32,7 +29,10 @@ const Auth: FC = () => {
         </Text>
 
       </View>
+
+      {/* auth form wrapper */}
       <View style={styles.authForm}>
+        {/* form inputs */}
         <View>
           <Text style={{ ...styles.authInputLabel, color: useTheme(dark).defautlText }}>Email</Text>
           <TextInput
@@ -60,12 +60,19 @@ const Auth: FC = () => {
               placeholderTextColor={useTheme(dark).inputColor}
               keyboardType="default"
               secureTextEntry
-              style={{ flex: 1}}
+              style={{ flex: 1 }}
             />
             <MaterialIcons name="visibility" size={20} color="gray" />
           </View>
         </View>
-        <View style={{ paddingTop: 5, flexDirection: "row", alignItems: "center" }}>
+
+        {/* remember me */}
+        <View style={{
+          paddingTop: 5,
+          flexDirection: "row",
+          alignItems: "center",
+          marginTop: 5
+        }}>
           <Switch
             value={true}
             onValueChange={() => { }}
@@ -73,6 +80,8 @@ const Auth: FC = () => {
           />
           <Text style={{ paddingLeft: 10, color: useTheme(dark).defautlText }}>Remember me</Text>
         </View>
+
+        {/* auth button */}
         <TouchableOpacity
           style={{ ...styles.paddingStyle, ...styles.authButton, backgroundColor: useTheme(dark).appColor }}
           onPress={() => navigation.navigate("NewsType")}
@@ -81,21 +90,28 @@ const Auth: FC = () => {
             {loginMode === "signup" ? "Sign Up" : "Sign In"}
           </Text>
         </TouchableOpacity>
+
+        {/* forgot password */}
         {loginMode === "signin" &&
           <Pressable style={styles.paddingStyle}>
             <Text style={{ color: useTheme(dark).defautlText }}>Forgot Password?</Text>
           </Pressable>
         }
         <Text style={{ ...styles.paddingStyle, color: useTheme(dark).defautlText }}>or continue with</Text>
+        
+        {/* firebase service */}
         <View style={[styles.firebaseAuth]}>
+          {/* facebook auth */}
           <TouchableOpacity style={{ ...styles.firebaseAuthButton, backgroundColor: useTheme(dark).secBg }}>
             <MaterialCommunityIcons name="facebook" size={20} color={"blue"} />
             <Text style={{ ...styles.firebaseAuthButtonText, color: useTheme(dark).defautlText }}>
               Facebook</Text>
           </TouchableOpacity>
-          <TouchableOpacity 
-          // onPress={()=> onGoogleButtonPress().then(()=> console.log("Signed in with Google!"))}
-          style={{ ...styles.firebaseAuthButton, backgroundColor: useTheme(dark).secBg }}>
+
+          {/* google auth */}
+          <TouchableOpacity
+            onPress={() => onGoogleButtonPress()}
+            style={{ ...styles.firebaseAuthButton, backgroundColor: useTheme(dark).secBg }}>
             <MaterialCommunityIcons name="google" size={20} />
             <Text style={{ ...styles.firebaseAuthButtonText, color: useTheme(dark).defautlText, }}>Google</Text>
           </TouchableOpacity>
@@ -168,6 +184,7 @@ const styles = StyleSheet.create({
   },
   authButton: {
     borderRadius: 50,
+    marginTop: 20
   },
   authButtonText: {
     fontSize: 18,
