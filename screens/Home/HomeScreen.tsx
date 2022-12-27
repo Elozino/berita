@@ -11,7 +11,8 @@ import NewsTopics from '../NewsTopics'
 import NewsCard from '../../components/NewsCard'
 import FeaturedCard from '../../components/FeaturedCard'
 
-const HomeScreen = () => {
+
+const HomeScreen = ({ navigation }: any) => {
   const { dark } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -20,7 +21,9 @@ const HomeScreen = () => {
       {/* header */}
       <View style={styles.header}>
         <Text style={{ ...styles.headerText, color: useTheme(dark).defautlText }}>Berita</Text>
-        <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, }}>
+        <TouchableHighlight
+          onPress={() => navigation.navigate("Notification")}
+          style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, }}>
           <Ionicons name="notifications" size={18} color={useTheme(dark).appColor} />
         </TouchableHighlight>
       </View>
@@ -51,7 +54,7 @@ const HomeScreen = () => {
           {/* features header */}
           <View style={{ ...styles.header }}>
             <Text style={{ color: useTheme(dark).defautlText, fontWeight: "500" }}>Featured</Text>
-            <Pressable>
+            <Pressable onPress={() => navigation.navigate("FeaturedNews")}>
               <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>See all</Text>
             </Pressable>
           </View>

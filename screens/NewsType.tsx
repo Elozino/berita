@@ -7,12 +7,11 @@ import { Context } from '../context/ContextApp';
 import { useNavigation } from '@react-navigation/native';
 import { TContext } from '../types';
 
-const NewsType: FC = () => {
+const NewsType: FC = ({ navigation }: any) => {
   const { dark } = useContext(Context) as TContext
   const [activeBtn, setActiveBtn] = useState<boolean>(false)
   const [activeIndex, setActiveIndex] = useState<null | number>(null)
-  const navigation = useNavigation()
-
+ 
 
   const selectedBtn = (index: number) => {
     if (index === 0) {
@@ -36,7 +35,7 @@ const NewsType: FC = () => {
           <TouchableOpacity
             onPress={() => selectedBtn(0)}
             style={{ flexDirection: "row", borderWidth: 1, borderColor: useTheme(dark).appColor, borderRadius: 10, marginTop: 20, alignItems: "center", padding: 20, backgroundColor: activeBtn && activeIndex == 0 ? useTheme(dark).appColor : "transparent" }}>
-            <View style={{backgroundColor: activeBtn && activeIndex == 0 ? useTheme(dark).white : useTheme(dark).appColor, padding: 20, borderRadius: 50, }}>
+            <View style={{ backgroundColor: activeBtn && activeIndex == 0 ? useTheme(dark).white : useTheme(dark).appColor, padding: 20, borderRadius: 50, }}>
               <Ionicons name="md-newspaper-outline" size={24} color={activeBtn && activeIndex == 0 ? useTheme(dark).appColor : useTheme(dark).white} />
             </View>
             <View style={{ flex: 1, marginLeft: 20 }}>
@@ -48,12 +47,12 @@ const NewsType: FC = () => {
             style={{ flexDirection: "row", borderWidth: 1, borderColor: useTheme(dark).appColor, borderRadius: 10, marginTop: 20, alignItems: "center", padding: 20, backgroundColor: activeBtn && activeIndex == 1 ? useTheme(dark).appColor : "transparent" }}
             onPress={() => selectedBtn(1)}
           >
-            <View style={{backgroundColor: activeBtn && activeIndex == 1 ? useTheme(dark).white : useTheme(dark).appColor, padding: 20, borderRadius: 50, }}>
+            <View style={{ backgroundColor: activeBtn && activeIndex == 1 ? useTheme(dark).white : useTheme(dark).appColor, padding: 20, borderRadius: 50, }}>
               <Ionicons name="ios-person-sharp" size={24} color={activeBtn && activeIndex == 1 ? useTheme(dark).appColor : useTheme(dark).white} />
             </View>
             <View style={{ flex: 1, marginLeft: 20, }}>
               <Text style={{ color: useTheme(dark).defautlText, fontSize: 20 }}>Personal</Text>
-              <Text style={{ color: useTheme(dark).defautlText, ...styles.newsTypeText}}>Suitable for those of you who use this application to read news (you ca still make your own news).</Text>
+              <Text style={{ color: useTheme(dark).defautlText, ...styles.newsTypeText }}>Suitable for those of you who use this application to read news (you ca still make your own news).</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
   },
   newsTypeText: {
     fontSize: 14,
-     marginTop: 10, lineHeight: 20
+    marginTop: 10, lineHeight: 20
   }
 }
 )

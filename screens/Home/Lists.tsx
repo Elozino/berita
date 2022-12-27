@@ -8,10 +8,12 @@ import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-ic
 import { globalStyles } from '../../constants/styles'
 import { topics } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
+import { useNavigation } from '@react-navigation/native'
 
 const Lists = () => {
   const { dark } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
+  const navigation = useNavigation()
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
       {/* header */}
@@ -81,6 +83,7 @@ const Lists = () => {
 
       <View>
         <TouchableHighlight
+        onPress={()=> navigation.navigate("CreateNews")}
           style={{ ...styles.floatBtn, backgroundColor: useTheme(dark).appColor }}>
           <Ionicons name="add" size={28} color={useTheme(dark).defautlText} />
         </TouchableHighlight>

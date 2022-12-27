@@ -4,23 +4,36 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTheme } from '../../utils/theme'
 import { TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
-import { Ionicons } from '@expo/vector-icons'
+import { FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { globalStyles } from '../../constants/styles'
 import { topics } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
 
-const Search = () => {
+
+const Search = ({ navigation }: any) => {
   const { dark } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
+
+  const NoResults = () => {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", }}>
+        <View style={{ width: 100, height: 100, backgroundColor: useTheme(dark).appColor, borderRadius: 50, justifyContent: "center", alignItems: "center" }}>
+          <FontAwesome5 name="frown" size={40} color={useTheme(dark).white} />
+        </View>
+        <Text style={{ color: useTheme(dark).appColor, fontSize: 20, fontWeight: "400", marginTop: 20 }}>No results found</Text>
+        <Text style={{ color: useTheme(dark).defautlText, fontSize: 14, fontWeight: "400", marginTop: 5 }}>Please try another keyword</Text>
+      </View>
+    )
+  }
 
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
       {/* header */}
       <View style={styles.header}>
-        <Text style={{ ...styles.headerText, color: useTheme(dark).defautlText }}>Berita</Text>
-        <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, }}>
-          <Ionicons name="notifications" size={18} color={useTheme(dark).appColor} />
-        </TouchableHighlight>
+        <View style={{ flexDirection: "row", alignItems: "center" }} >
+          <MaterialCommunityIcons name="arrow-left" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+          <Text style={{ color: useTheme(dark).defautlText, marginLeft: 10, fontSize: 20 }}>Search</Text>
+        </View>
       </View>
 
       {/* search */}
@@ -68,6 +81,10 @@ const Search = () => {
           <Text style={{ color: useTheme(dark).defautlText, fontWeight: "500" }}>Search Results</Text>
           <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>100 founds</Text>
         </View>
+        {/* no results */}
+        {/* <NoResults /> */}
+
+        {/* yes results */}
         <ScrollView
           showsVerticalScrollIndicator={false}
         >
