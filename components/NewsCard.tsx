@@ -4,11 +4,19 @@ import { TContext } from '../types'
 import { Context } from '../context/ContextApp'
 import { useTheme } from '../utils/theme'
 
-const NewsCard = ({ data }) => {
+interface IProps {
+  navigation: any;
+  data: {
+    image: any;
+    topic: string;
+  }
+}
+
+const NewsCard = ({ navigation, data }: IProps) => {
   const { dark } = useContext(Context) as TContext
 
   return (
-    <TouchableHighlight>
+    <TouchableHighlight onPress={() => navigation.navigate("NewsDetails", data)}>
       <View style={{ ...styles.wrapper, backgroundColor: useTheme(dark).secBg }}>
         <Image source={data.image} style={{ ...styles.image }} />
         <View style={{ ...styles.content }}>

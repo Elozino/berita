@@ -1,4 +1,7 @@
 // export { default as Home } from "./Home";
+export { default as Notification } from "./Notification";
+export { default as FeaturedNews } from "./FeaturedNews";
+export { default as NewsDetails } from "./NewsDetails";
 export { default as CreateNews } from "./CreateNews";
 export { default as HomeScreen } from "./HomeScreen";
 export { default as Bookmark } from "./Bookmark";

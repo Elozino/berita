@@ -94,7 +94,7 @@ const HomeScreen = ({ navigation }: any) => {
           {/* news cards */}
           <View style={{ marginTop: 10 }}>
             {
-              topics.map(((item, i) => <NewsCard key={i} data={item} />))
+              topics.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
             }
           </View>
         </View>
