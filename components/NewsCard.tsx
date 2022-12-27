@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useContext } from 'react'
 import { TContext } from '../types'
 import { Context } from '../context/ContextApp'
@@ -16,7 +16,9 @@ const NewsCard = ({ navigation, data }: IProps) => {
   const { dark } = useContext(Context) as TContext
 
   return (
-    <TouchableHighlight onPress={() => navigation.navigate("NewsDetails", data)}>
+    <TouchableOpacity
+      activeOpacity={.8}
+      onPress={() => navigation.navigate("NewsDetails", data)}>
       <View style={{ ...styles.wrapper, backgroundColor: useTheme(dark).secBg }}>
         <Image source={data.image} style={{ ...styles.image }} />
         <View style={{ ...styles.content }}>
@@ -34,7 +36,7 @@ const NewsCard = ({ navigation, data }: IProps) => {
           </View>
         </View>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   )
 }
 

@@ -1,4 +1,4 @@
-import { FlatList, Image, ImageBackground, Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native'
+import { FlatList, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TContext } from '../../types'
@@ -7,7 +7,6 @@ import { useTheme } from '../../utils/theme'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { globalStyles } from '../../constants/styles'
 import { topics } from '../../constants/data'
-import NewsTopics from '../NewsTopics'
 import NewsCard from '../../components/NewsCard'
 import FeaturedCard from '../../components/FeaturedCard'
 

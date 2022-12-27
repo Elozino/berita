@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { CheckBox } from 'react-native-btr'
 import { useTheme } from '../utils/theme'
@@ -12,26 +12,41 @@ interface IProps {
   }
 }
 const NewsSourceCard = ({ source }: IProps) => {
-  const { dark } = useContext(Context) as TContext
-  const [toggleCheckBox, setToggleCheckBox] = useState(false)
+  const { dark, newSourceList } = useContext(Context) as TContext
+  const [toggleCheckBox, setToggleCheckBox] = useState(true)
 
+  const selectedNewsSource = () => {
+    if (toggleCheckBox) {
+      newSourceList.push(source.name)
+    } else {
+      newSourceList.pop()
+    }
+  }
 
   return (
-    <TouchableHighlight style={{ width: "48%" }}
-      onPress={() => setToggleCheckBox(!toggleCheckBox)}
+    <TouchableOpacity style={{ width: "48%", borderRadius: 10, backgroundColor: useTheme(dark).inputColor, }}
+      activeOpacity={0.8}
+      onPress={() => {
+        setToggleCheckBox(!toggleCheckBox)
+        selectedNewsSource()
+      }}
     >
-      <View style={{ backgroundColor: useTheme(dark).inputColor, ...styles.container }}>
+      <View style={{ ...styles.container }}>
         <View style={styles.checkbox}>
           <CheckBox
-            checked={toggleCheckBox}
+            checked={!toggleCheckBox}
             color={useTheme(dark).appColor}
             disabled={false}
+            onPress={() => {
+              setToggleCheckBox(!toggleCheckBox)
+              selectedNewsSource()
+            }}
           />
         </View>
         {/* <Image source={""} resizeMode="cover" style={styles.image} /> */}
         <Text style={{ color: useTheme(dark).defautlText }}>{source.name}</Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   )
 }
 
@@ -41,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 150,
-    borderRadius: 10,
+
     // backgroundColor: "#cecbcd",
     position: "relative",
     justifyContent: "center",

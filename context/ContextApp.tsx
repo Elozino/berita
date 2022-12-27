@@ -7,6 +7,9 @@ const ContextApp = ({ children }: any) => {
   const [dark, setDark] = useState(true)
   const [errorMsg, setErrorMsg] = useState(false)
   const [loginMode, setLoginMode] = useState("signup")
+  //NEWS
+  const [newSourceList, setNewSourceList] = useState<string[]>([])
+  // USER
   const [userAuthInput, setUserAuthInput] = useState({
     email: "",
     password: ""
@@ -33,6 +36,8 @@ const ContextApp = ({ children }: any) => {
         setUserAuthInput,
         userInfo,
         setUserInfo,
+        newSourceList,
+        setNewSourceList
       }}
     >
       {children}

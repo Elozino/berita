@@ -27,7 +27,6 @@ export type RouteScreenProps = {
   navigate: NavigationProp<any, any>;
 };
 
-
 // TYPES FOR STATE MANAGEMENT (ContextAPI)
 export type TContext = {
   dark: boolean;
@@ -63,4 +62,6 @@ export type TContext = {
       newsType: string;
     }>
   >;
+  newSourceList: string[];
+  setNewSourceList: React.Dispatch<React.SetStateAction<string[]>>;
 };
