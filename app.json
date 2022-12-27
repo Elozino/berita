@@ -19,7 +19,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.elozino.Berita"
+      "bundleIdentifier": "com.elozino.berita"
     },
     "android": {
       "softwareKeyboardLayoutMode": "pan",
