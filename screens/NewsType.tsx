@@ -4,32 +4,35 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from '../utils/theme';
 import { Context } from '../context/ContextApp';
-import { useNavigation } from '@react-navigation/native';
 import { TContext } from '../types';
+import StickyBottomButton from '../components/StickyBottomButton';
 
 const NewsType: FC = ({ navigation }: any) => {
-  const { dark } = useContext(Context) as TContext
+  const { dark, userInfo, setUserInfo } = useContext(Context) as TContext
   const [activeBtn, setActiveBtn] = useState<boolean>(false)
   const [activeIndex, setActiveIndex] = useState<null | number>(null)
- 
+  
+  let check = activeIndex === null
 
   const selectedBtn = (index: number) => {
     if (index === 0) {
       setActiveIndex(0)
       setActiveBtn(true)
+      setUserInfo({ ...userInfo, ["newsType"]: "News Agency" })
     } else if (index === 1) {
       setActiveIndex(1)
       setActiveBtn(true)
+      setUserInfo({ ...userInfo, ["newsType"]: "Personal" })
     }
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20 }}>
-      <View style={{ flexDirection: "row", alignItems: "center", marginVertical: 10, }} >
+    <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1 }}>
+      <View style={{ flexDirection: "row", alignItems: "center", marginVertical: 10, paddingHorizontal: 20 }} >
         <MaterialCommunityIcons name="arrow-left" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
         <Text style={{ color: useTheme(dark).defautlText, marginLeft: 10, fontSize: 20 }}>Do You?</Text>
       </View>
-      <View style={{ flex: 1, justifyContent: "space-between" }}>
+      <View style={{ flex: 1, justifyContent: "space-between", paddingHorizontal: 20 }}>
         <View>
           <Text style={{ color: useTheme(dark).defautlText, fontSize: 14, lineHeight: 20 }}>Choose the role that best describe you now, whether you are a news agency or personal</Text>
           <TouchableOpacity
@@ -56,12 +59,9 @@ const NewsType: FC = ({ navigation }: any) => {
             </View>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Country")}
-          style={{ backgroundColor: useTheme(dark).appColor, padding: 15, borderRadius: 50, alignItems: "center", marginBottom: 40 }}>
-          <Text style={{ color: useTheme(dark).white }}>Continue</Text>
-        </TouchableOpacity>
       </View>
+      {/* button */}
+      <StickyBottomButton navigatingTo={"Country"} disabled={check} />
     </SafeAreaView >
   )
 }

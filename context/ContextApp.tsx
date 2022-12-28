@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { FC, createContext, useState } from 'react'
 import { TContext } from '../types'
 
@@ -20,8 +21,32 @@ const ContextApp = ({ children }: any) => {
     telephone: "",
     profilePicture: "",
     country: "",
-    newsType: ""
+    newsType: "",
+    website: ""
   })
+
+
+  // ASYNC STORAGE
+  // const storeData = async (value) => {
+  //   try {
+  //     const jsonValue = JSON.stringify(value)
+  //     await AsyncStorage.setItem('@storage_Key', jsonValue)
+  //   } catch (e) {
+  //     // saving error
+  //   }
+  // }
+  // const getData = async () => {
+  //   try {
+  //     const value = await AsyncStorage.getItem('@storage_Key')
+  //     if(value !== null) {
+  //       // value previously stored
+  //     }
+  //   } catch(e) {
+  //     // error reading value
+  //   }
+  // }
+
+
 
   return (
     <Context.Provider

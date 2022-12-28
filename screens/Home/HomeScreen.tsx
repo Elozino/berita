@@ -1,5 +1,5 @@
 import { FlatList, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
@@ -14,6 +14,18 @@ import FeaturedCard from '../../components/FeaturedCard'
 const HomeScreen = ({ navigation }: any) => {
   const { dark } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
+
+  const fetchData = async () => {
+    const url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=622fd3964e9b4eb391c3e56d2acc414f"
+    await fetch(url)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.log(error))
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>

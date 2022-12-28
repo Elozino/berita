@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, Pressable, View } from 'react-native'
 import React, { useContext } from 'react'
 import { useTheme } from '../utils/theme'
 import { TContext } from '../types'
@@ -10,18 +10,20 @@ import { useNavigation } from '@react-navigation/native'
 interface IProps {
   navigatingTo: any;
   text?: string;
+  disabled?: boolean;
 }
 
-const StickyBottomButton: React.FC<IProps> = ({ navigatingTo, text }) => {
+const StickyBottomButton: React.FC<IProps> = ({ navigatingTo, text, disabled }) => {
   const { dark } = useContext(Context) as TContext
   const navigation = useNavigation()
   return (
     <View style={[styles.bottomWrapper, { shadowColor: useTheme(dark).defautlText, }]}>
-      <TouchableOpacity
+      <Pressable
+        disabled={disabled}
         onPress={() => { navigation.navigate(navigatingTo) }}
-        style={{ backgroundColor: useTheme(dark).appColor, ...globalStyles.button }}>
+        style={{ backgroundColor: disabled ? `${useTheme(dark).appColor}50` : useTheme(dark).appColor, ...globalStyles.button }}>
         <Text style={{ color: useTheme(dark).white }}>{text ? "Continue" : "Next"}</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   )
 }

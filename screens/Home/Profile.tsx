@@ -9,11 +9,17 @@ import { useTheme } from '../../utils/theme'
 import { globalStyles } from '../../constants/styles'
 
 
-const Profile = () => {
-  const { dark } = useContext(Context) as TContext
-  const navigation = useNavigation()
+const Profile = ({ navigation }: any) => {
+  const { dark, userInfo, setUserInfo } = useContext(Context) as TContext
   const [modalVisible, setModalVisible] = useState(false);
 
+  const handleUserInputs = (name: string, value: string) => {
+    setUserInfo({ ...userInfo, [name]: value })
+  }
+
+
+
+  console.log(userInfo)
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1 }}>
       <View style={{ flexDirection: "row", alignItems: "center", marginVertical: 10, paddingHorizontal: 20 }} >
@@ -36,10 +42,12 @@ const Profile = () => {
           <Text style={{ color: useTheme(dark).defautlText }}>Username</Text>
           <View style={[globalStyles.inputWrapper, { backgroundColor: useTheme(dark).secBg }]}>
             <TextInput
-              style={globalStyles.input}
+              value={userInfo.username}
+              onChangeText={(text) => handleUserInputs("username", text)}
               keyboardType="default"
               placeholder='Username'
               placeholderTextColor={useTheme(dark).inputColor}
+              style={[globalStyles.input, { color: useTheme(dark).defautlText }]}
             />
           </View>
         </View>
@@ -47,23 +55,27 @@ const Profile = () => {
           <Text style={{ color: useTheme(dark).defautlText }}>Full Name</Text>
           <View style={[globalStyles.inputWrapper, { backgroundColor: useTheme(dark).secBg }]}>
             <TextInput
-              style={globalStyles.input}
+              value={userInfo.fullname}
+              onChangeText={(text) => handleUserInputs("fullname", text)}
               keyboardType="default"
               placeholder='Full Name'
               placeholderTextColor={useTheme(dark).inputColor}
+              style={[globalStyles.input, { color: useTheme(dark).defautlText }]}
             />
           </View>
         </View>
         <View style={{ marginBottom: 10 }}>
-          <Text style={{ color: useTheme(dark).defautlText }}>Email</Text>
+          <Text style={{ color: useTheme(dark).defautlText }}>Website</Text>
           <View style={[globalStyles.inputWrapper, { backgroundColor: useTheme(dark).secBg }]}>
             <TextInput
-              placeholder='Email'
-              keyboardType="email-address"
+              value={userInfo.website}
+              onChangeText={(text) => handleUserInputs("website", text)}
+              placeholder='Website Domain'
+              keyboardType="default"
               placeholderTextColor={useTheme(dark).inputColor}
               style={[globalStyles.inputField, globalStyles.input, { color: useTheme(dark).defautlText }]} />
             <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }}>
-              <Ionicons name="mail" size={18} color={useTheme(dark).inputColor} />
+              <MaterialCommunityIcons name="web" size={18} color={useTheme(dark).inputColor} />
             </TouchableOpacity>
           </View>
         </View>
@@ -71,6 +83,8 @@ const Profile = () => {
           <Text style={{ color: useTheme(dark).defautlText }}>Phone Number</Text>
           <View style={[globalStyles.inputWrapper, { backgroundColor: useTheme(dark).secBg }]}>
             <TextInput
+              value={userInfo.telephone}
+              onChangeText={(text) => handleUserInputs("telephone", text)}
               keyboardType="phone-pad"
               placeholder='Phone Number'
               placeholderTextColor={useTheme(dark).inputColor}

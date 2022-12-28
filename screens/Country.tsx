@@ -9,13 +9,24 @@ import { useNavigation } from '@react-navigation/native'
 import CountryCard from '../components/CountryCard'
 import { globalStyles } from '../constants/styles'
 import StickyBottomButton from '../components/StickyBottomButton'
+import { countryCode } from '../constants/data'
 
+
+interface IProps {
+  cca2: string;
+  item: {
+    cca2: string
+  }
+
+}
 const Country = ({ navigation }: any) => {
-  const { dark } = useContext(Context) as TContext
+  const { dark, userInfo } = useContext(Context) as TContext
   const [countries, setCountries] = useState([])
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("")
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
+  let check = activeIndex === null
 
   const searchFilterFunction = (text: string) => {
     // Check if searched text is not blank
@@ -46,8 +57,11 @@ const Country = ({ navigation }: any) => {
       .then((res) => res.json())
       .then((data) => {
         const sortedCountries = data.sort((a: { name: { common: string } }, b: { name: { common: string } }) => { return a.name.common.localeCompare(b.name.common) })
-        setCountries(sortedCountries)
-        setFilteredResults(sortedCountries)
+        let filterApiCountries = sortedCountries.filter((item: { cca2: string }) =>
+          countryCode.includes(item.cca2.toLowerCase())
+        );
+        setCountries(filterApiCountries)
+        setFilteredResults(filterApiCountries)
       })
       .catch(err => console.log(err))
   }, [])
@@ -75,33 +89,32 @@ const Country = ({ navigation }: any) => {
       </View>
 
       {/* list of countries */}
-      {
-        countries.length < 1 ?
-          (
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-              <ActivityIndicator size="large" color={useTheme(dark).appColor} />
+      {countries.length < 1 ?
+        (
+          <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+            <ActivityIndicator size="large" color={useTheme(dark).appColor} />
+          </View>
+        ) : filteredResults.length < 1 ? (
+          <View style={{ flex: 1, justifyContent: "center", alignItems: "center", }}>
+            <View style={{ width: 100, height: 100, backgroundColor: useTheme(dark).appColor, borderRadius: 50, justifyContent: "center", alignItems: "center" }}>
+              <FontAwesome5 name="frown" size={40} color={useTheme(dark).white} />
             </View>
-          ) : filteredResults.length < 1 ? (
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center", }}>
-              <View style={{ width: 100, height: 100, backgroundColor: useTheme(dark).appColor, borderRadius: 50, justifyContent: "center", alignItems: "center" }}>
-                <FontAwesome5 name="frown" size={40} color={useTheme(dark).white} />
-              </View>
-              <Text style={{ color: useTheme(dark).appColor, fontSize: 20, fontWeight: "400", marginTop: 20 }}>Oops! Country not found</Text>
-            </View>
+            <Text style={{ color: useTheme(dark).appColor, fontSize: 20, fontWeight: "400", marginTop: 20 }}>Oops! Country not found</Text>
+          </View>
 
-          ) :
-            (<FlatList
-              data={filteredResults}
-              keyExtractor={(_, i) => i.toFixed()}
-              renderItem={
-                ({ item }) => (
-                  <CountryCard country={item} />
-                )}
-            />)
+        ) :
+          (<FlatList
+            data={filteredResults}
+            keyExtractor={(_, i) => i.toFixed()}
+            renderItem={
+              ({ item, index }) => (
+                <CountryCard country={item} index={index} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+              )}
+          />)
       }
 
       {/* button */}
-      <StickyBottomButton navigatingTo={"NewsTopics"} />
+      <StickyBottomButton navigatingTo={"NewsTopics"} disabled={check} />
     </SafeAreaView >
   )
 }

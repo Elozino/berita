@@ -51,6 +51,8 @@ export type TContext = {
     telephone: string;
     profilePicture: string;
     country: string;
+    newsType: string;
+    website: string;
   };
   setUserInfo: React.Dispatch<
     React.SetStateAction<{
@@ -60,6 +62,7 @@ export type TContext = {
       profilePicture: string;
       country: string;
       newsType: string;
+      website: string;
     }>
   >;
   newSourceList: string[];
