@@ -1,5 +1,5 @@
 import { Alert, Image, Modal, Pressable, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { useNavigation } from '@react-navigation/native'
@@ -12,11 +12,24 @@ import { globalStyles } from '../../constants/styles'
 const Profile = ({ navigation }: any) => {
   const { dark, userInfo, setUserInfo } = useContext(Context) as TContext
   const [modalVisible, setModalVisible] = useState(false);
+  const [check, setCheck] = useState(true)
 
   const handleUserInputs = (name: string, value: string) => {
     setUserInfo({ ...userInfo, [name]: value })
   }
 
+  const submitInfo = () => {
+    setModalVisible(true)
+  }
+
+
+  useEffect(() => {
+    if (userInfo.username === "" || userInfo.fullname === "" || userInfo.website === "" || userInfo.telephone === "") {
+      setCheck(true)
+    } else {
+      setCheck(false)
+    }
+  }, [userInfo])
 
 
   console.log(userInfo)
@@ -129,13 +142,13 @@ const Profile = ({ navigation }: any) => {
 
       {/* button */}
       <View style={[styles.bottomWrapper, { shadowColor: useTheme(dark).defautlText, }]}>
-        <TouchableOpacity
-          onPress={() => { setModalVisible(true) }}
-          style={{ backgroundColor: useTheme(dark).appColor, ...globalStyles.button }}>
+        <Pressable
+          disabled={check}
+          onPress={submitInfo}
+          style={{ backgroundColor: check ? `${useTheme(dark).appColor}50` : useTheme(dark).appColor, ...globalStyles.button }}>
           <Text style={{ color: useTheme(dark).white }}>Continue</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
-
     </SafeAreaView >
   )
 }

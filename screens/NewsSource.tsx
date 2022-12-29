@@ -17,6 +17,7 @@ const NewsSource = () => {
   const [filteredNewsSource, setFilteredNewsSource] = useState([])
   const [searchInput, setSearchInput] = useState("")
   const navigation = useNavigation()
+  const [check, setCheck] = useState(true)
 
   const searchFilterFunction = (text: string) => {
     if (text) {
@@ -88,7 +89,11 @@ const NewsSource = () => {
         <FlatList
           data={filteredNewsSource}
           keyExtractor={(_, i) => i.toFixed()}
-          renderItem={({ item }) => <NewsSourceCard source={item} />}
+          renderItem={({ item }) =>
+            <NewsSourceCard
+              source={item}
+              setCheck={setCheck}
+            />}
           numColumns={2}
           contentContainerStyle={{
             padding: 20
@@ -102,7 +107,7 @@ const NewsSource = () => {
       }
 
       {/* button */}
-      <StickyBottomButton navigatingTo={"Profile"} />
+      <StickyBottomButton navigatingTo={"Profile"} disabled={check} />
     </SafeAreaView >
   )
 }

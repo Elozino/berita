@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CheckBox } from 'react-native-btr'
 import { useTheme } from '../utils/theme'
 import { Context } from '../context/ContextApp'
@@ -9,19 +9,31 @@ import { TContext } from '../types'
 interface IProps {
   source: {
     name: string,
-  }
+  };
+  setCheck: React.Dispatch<React.SetStateAction<boolean>>
 }
-const NewsSourceCard = ({ source }: IProps) => {
-  const { dark, newSourceList } = useContext(Context) as TContext
+const NewsSourceCard = ({ source, setCheck }: IProps) => {
+  const { dark, newSourceList, setNewSourceList } = useContext(Context) as TContext
   const [toggleCheckBox, setToggleCheckBox] = useState(true)
 
   const selectedNewsSource = () => {
     if (toggleCheckBox) {
       newSourceList.push(source.name)
     } else {
-      newSourceList.pop()
+      const filtered = newSourceList.filter((item: string) => item !== source.name)
+      setNewSourceList(filtered)
     }
   }
+
+
+  useEffect(() => {
+    if (newSourceList.length === 0) {
+      setCheck(true)
+    } else {
+      setCheck(false)
+    }
+  })
+
 
   return (
     <TouchableOpacity style={{ width: "48%", borderRadius: 10, backgroundColor: useTheme(dark).inputColor, }}

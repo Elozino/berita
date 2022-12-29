@@ -61,6 +61,7 @@ export type TContext = {
     country: string;
     newsType: string;
     website: string;
+    category: any;
   };
   setUserInfo: React.Dispatch<
     React.SetStateAction<{
@@ -71,6 +72,7 @@ export type TContext = {
       country: string;
       newsType: string;
       website: string;
+      category: any;
     }>
   >;
   newSourceList: string[];

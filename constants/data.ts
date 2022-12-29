@@ -61,27 +61,27 @@ export const topics = [
 
 export const categories = [
   {
-    category: "general",
+    category: "General",
     image: require("../assets/images/new1.png"),
   },
   {
-    category: "entertainment",
+    category: "Entertainment",
     image: require("../assets/images/new1.png"),
   },
   {
-    category: "health",
+    category: "Health",
     image: require("../assets/images/new1.png"),
   },
   {
-    category: "science",
+    category: "Science",
     image: require("../assets/images/new1.png"),
   },
   {
-    category: "sports",
+    category: "Sports",
     image: require("../assets/images/new1.png"),
   },
   {
-    category: "technology",
+    category: "Technology",
     image: require("../assets/images/new1.png"),
   },
 ];

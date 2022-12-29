@@ -1,5 +1,5 @@
 import { ImageBackground, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CheckBox } from 'react-native-btr'
 import { useTheme } from '../utils/theme'
 import { TContext } from '../types'
@@ -9,14 +9,37 @@ interface IProps {
   data: {
     category: string;
     image: any;
-  }
+  };
+  setCheck: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const TopicCard = ({ data }: IProps) => {
-  const { dark } = useContext(Context) as TContext
+const TopicCard = ({ data, setCheck }: IProps) => {
+  const { dark, setUserInfo, userInfo, } = useContext(Context) as TContext
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
+
+  const handleSelectedCategories = () => {
+    setToggleCheckBox(!toggleCheckBox)
+    if (!toggleCheckBox) {
+      userInfo.category.push(data.category)
+    } else {
+      const filtered = userInfo.category.filter((item: string) => item !== data.category)
+      setUserInfo({ ...userInfo, category: filtered })
+    }
+  }
+
+  useEffect(() => {
+    if (userInfo.category.length === 0) {
+      setCheck(true)
+    } else {
+      setCheck(false)
+    }
+  })
+
   return (
-    <TouchableHighlight style={styles.container} onPress={() => setToggleCheckBox(!toggleCheckBox)}>
+    <TouchableHighlight
+      onPress={handleSelectedCategories}
+      style={styles.container}
+    >
       <ImageBackground source={data.image} resizeMode="cover" style={styles.image}>
         <View style={styles.checkbox}>
           <CheckBox
@@ -59,6 +82,7 @@ const styles = StyleSheet.create({
   text: {
     position: "absolute",
     bottom: 15,
-    left: 20
+    left: 20,
+    fontWeight: "bold",
   }
 })

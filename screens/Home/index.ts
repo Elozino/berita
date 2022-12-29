@@ -1,4 +1,8 @@
 // export { default as Home } from "./Home";
+// export { default as Home } from "./Home";
+// export { default as Home } from "./Home";
+export { default as EditProfile } from "./EditProfile";
+export { default as Settings } from "./Settings";
 export { default as Notification } from "./Notification";
 export { default as FeaturedNews } from "./FeaturedNews";
 export { default as NewsDetails } from "./NewsDetails";

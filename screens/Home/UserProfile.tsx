@@ -6,7 +6,7 @@ import { Context } from '../../context/ContextApp'
 import { useTheme } from '../../utils/theme'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
-const UserProfile = () => {
+const UserProfile = ({ navigation }: any) => {
   const { dark } = useContext(Context) as TContext
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
@@ -14,10 +14,14 @@ const UserProfile = () => {
       <View style={styles.header}>
         <Text style={{ ...styles.headerText, color: useTheme(dark).defautlText }}>My Profile</Text>
         <View style={{ flexDirection: "row" }}>
-          <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, }}>
+          <TouchableHighlight
+            onPress={() => navigation.navigate("EditProfile")}
+            style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, }}>
             <MaterialIcons name="edit" size={18} color={useTheme(dark).appColor} />
           </TouchableHighlight>
-          <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, marginLeft: 10 }}>
+          <TouchableHighlight
+            onPress={() => navigation.navigate("Settings")}
+            style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, marginLeft: 10 }}>
             <Ionicons name="settings" size={18} color={useTheme(dark).appColor} />
           </TouchableHighlight>
         </View>

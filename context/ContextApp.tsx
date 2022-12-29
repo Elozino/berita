@@ -25,7 +25,8 @@ const ContextApp = ({ children }: any) => {
     profilePicture: "",
     country: "",
     newsType: "",
-    website: ""
+    website: "",
+    category: []
   })
 
 
