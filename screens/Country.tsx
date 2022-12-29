@@ -5,22 +5,14 @@ import { FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-ico
 import { useTheme } from '../utils/theme'
 import { TContext } from '../types'
 import { Context } from '../context/ContextApp'
-import { useNavigation } from '@react-navigation/native'
 import CountryCard from '../components/CountryCard'
 import { globalStyles } from '../constants/styles'
 import StickyBottomButton from '../components/StickyBottomButton'
 import { countryCode } from '../constants/data'
 
 
-interface IProps {
-  cca2: string;
-  item: {
-    cca2: string
-  }
-
-}
 const Country = ({ navigation }: any) => {
-  const { dark, userInfo } = useContext(Context) as TContext
+  const { dark } = useContext(Context) as TContext
   const [countries, setCountries] = useState([])
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("")

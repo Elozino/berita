@@ -60,13 +60,30 @@ export const topics = [
 ];
 
 export const categories = [
-  "general",
-  "business",
-  "entertainment",
-  "health",
-  "science",
-  "sports",
-  "technology",
+  {
+    category: "general",
+    image: require("../assets/images/new1.png"),
+  },
+  {
+    category: "entertainment",
+    image: require("../assets/images/new1.png"),
+  },
+  {
+    category: "health",
+    image: require("../assets/images/new1.png"),
+  },
+  {
+    category: "science",
+    image: require("../assets/images/new1.png"),
+  },
+  {
+    category: "sports",
+    image: require("../assets/images/new1.png"),
+  },
+  {
+    category: "technology",
+    image: require("../assets/images/new1.png"),
+  },
 ];
 
 export const countryCode = [

@@ -9,7 +9,7 @@ import { globalStyles } from '../constants/styles'
 import { useNavigation } from '@react-navigation/native'
 import StickyBottomButton from '../components/StickyBottomButton'
 import TopicCard from '../components/TopicCard'
-import { topics } from "../constants/data"
+import { categories } from "../constants/data"
 
 const NewsTopics = () => {
   const { dark } = useContext(Context) as TContext
@@ -33,7 +33,7 @@ const NewsTopics = () => {
 
       {/* cards */}
       <FlatList
-        data={topics}
+        data={categories}
         keyExtractor={(_, i) => i.toFixed()}
         renderItem={({ item }) => (
           <TopicCard data={item} />

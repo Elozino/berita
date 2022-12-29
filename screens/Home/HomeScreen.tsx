@@ -15,17 +15,17 @@ const HomeScreen = ({ navigation }: any) => {
   const { dark } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
 
-  const fetchData = async () => {
-    const url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=622fd3964e9b4eb391c3e56d2acc414f"
-    await fetch(url)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log(error))
-  }
+  // const fetchData = async () => {
+  //   const url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=622fd3964e9b4eb391c3e56d2acc414f"
+  //   await fetch(url)
+  //     .then(response => response.json())
+  //     .then(data => console.log(data))
+  //     .catch(error => console.log(error))
+  // }
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
 
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>

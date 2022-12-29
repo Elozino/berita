@@ -14,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.elozino.berita"
@@ -35,7 +33,20 @@
     },
     "plugins": [
       "@react-native-firebase/app",
-      "@react-native-google-signin/google-signin"
+      "@react-native-google-signin/google-signin",
+      [
+        "react-native-fbsdk-next",
+        {
+          "appID": "3228478897382364",
+          "clientToken": "f4042b40e510d6ff2790c7026c526667",
+          "displayName": "berita"
+          // "scheme": "fb48127127xxxxxxxx",
+          // "advertiserIDCollectionEnabled": false,
+          // "autoLogAppEventsEnabled": false,
+          // "isAutoInitEnabled": true,
+          // "iosUserTrackingPermission": "This identifier will be used to deliver personalized ads to you."
+        }
+      ]
       // "@react-native-firebase/perf",
       // "@react-native-firebase/crashlytics"
     ],

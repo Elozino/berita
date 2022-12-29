@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
+// import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { FC, createContext, useState } from 'react'
 import { TContext } from '../types'
 
@@ -6,7 +6,10 @@ export const Context = createContext<TContext | null>(null)
 
 const ContextApp = ({ children }: any) => {
   const [dark, setDark] = useState(true)
-  const [errorMsg, setErrorMsg] = useState(false)
+  const [errorMsg, setErrorMsg] = useState({
+    email: "",
+    password: "",
+  })
   const [loginMode, setLoginMode] = useState("signup")
   //NEWS
   const [newSourceList, setNewSourceList] = useState<string[]>([])

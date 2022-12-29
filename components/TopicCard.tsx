@@ -7,7 +7,7 @@ import { Context } from '../context/ContextApp'
 
 interface IProps {
   data: {
-    topic: string;
+    category: string;
     image: any;
   }
 }
@@ -25,7 +25,7 @@ const TopicCard = ({ data }: IProps) => {
             disabled={false}
           />
         </View>
-        <Text style={{ color: useTheme(dark).defautlText, ...styles.text }}>{data.topic}</Text>
+        <Text style={{ color: useTheme(dark).defautlText, ...styles.text }}>{data.category}</Text>
       </ImageBackground>
     </TouchableHighlight>
   )

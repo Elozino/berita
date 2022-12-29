@@ -31,8 +31,16 @@ export type RouteScreenProps = {
 export type TContext = {
   dark: boolean;
   setDark: React.Dispatch<React.SetStateAction<boolean>>;
-  errorMsg: boolean;
-  setErrorMsg: React.Dispatch<React.SetStateAction<boolean>>;
+  errorMsg: {
+    email: string;
+    password: string;
+  };
+  setErrorMsg: React.Dispatch<
+    React.SetStateAction<{
+      email: string;
+      password: string;
+    }>
+  >;
   loginMode: string;
   setLoginMode: React.Dispatch<React.SetStateAction<string>>;
   userAuthInput: {
