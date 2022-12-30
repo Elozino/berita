@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTheme } from '../../utils/theme'
@@ -9,22 +9,27 @@ import { BottomSheet } from 'react-native-btr'
 import auth from '@react-native-firebase/auth';
 
 
-
-
 const Settings = ({ navigation }: any) => {
   const { dark } = useContext(Context) as TContext
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   function toggle() {
     setVisible((visible) => !visible);
   }
 
   function logout() {
+    setLoading(true)
     auth()
       .signOut()
-      .then(() => console.log('User signed out!'));
-    navigation.navigate("Auth")
+      .then(() => {
+        console.log('User signed out!')
+        navigation.navigate("Auth")
+        setLoading(false)
+      }
+      );
   }
+
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
       <View style={{ flexDirection: "row", alignItems: "center", marginVertical: 10 }} >
@@ -156,7 +161,13 @@ const Settings = ({ navigation }: any) => {
             <Pressable
               onPress={logout}
               style={{ ...styles.pressable, backgroundColor: useTheme(dark).appColor, borderColor: useTheme(dark).appColor }}>
-              <Text style={{ color: useTheme(dark).white }}>Yes, Logout</Text>
+              {
+                loading ? (
+                  <ActivityIndicator size={20} color={useTheme(dark).white} />
+                ) : (
+                  <Text style={{ color: useTheme(dark).white }}>Yes, Logout</Text>
+                )
+              }
             </Pressable>
           </View>
         </View>
