@@ -6,6 +6,8 @@ import { TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { BottomSheet } from 'react-native-btr'
+import auth from '@react-native-firebase/auth';
+
 
 
 
@@ -15,6 +17,13 @@ const Settings = ({ navigation }: any) => {
 
   function toggle() {
     setVisible((visible) => !visible);
+  }
+
+  function logout() {
+    auth()
+      .signOut()
+      .then(() => console.log('User signed out!'));
+    navigation.navigate("Auth")
   }
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
@@ -144,7 +153,9 @@ const Settings = ({ navigation }: any) => {
               style={{ ...styles.pressable, borderColor: useTheme(dark).appColor }}>
               <Text style={{ color: useTheme(dark).defautlText }}>Cancel</Text>
             </Pressable>
-            <Pressable style={{ ...styles.pressable, backgroundColor: useTheme(dark).appColor, borderColor: useTheme(dark).appColor }}>
+            <Pressable
+              onPress={logout}
+              style={{ ...styles.pressable, backgroundColor: useTheme(dark).appColor, borderColor: useTheme(dark).appColor }}>
               <Text style={{ color: useTheme(dark).white }}>Yes, Logout</Text>
             </Pressable>
           </View>

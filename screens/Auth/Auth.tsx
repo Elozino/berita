@@ -31,7 +31,9 @@ const Auth: FC = ({ navigation }: any) => {
           console.log("User account logged in!");
           console.log(response);
           navigation.navigate("NewsType")
+          setUserAuthInput({ ...userAuthInput, email: "", password: "" })
           setLoading(false)
+          setLoginMode("signin")
           return response;
         })
         .catch((error) => {
@@ -58,7 +60,9 @@ const Auth: FC = ({ navigation }: any) => {
           console.log("User account logged in!");
           console.log(response);
           navigation.navigate("Home")
+          setUserAuthInput({ ...userAuthInput, email: "", password: "" })
           setLoading(false)
+          setLoginMode("signin")
           return response;
         })
         .catch((error) => {
