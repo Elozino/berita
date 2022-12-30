@@ -14,11 +14,11 @@ const FeaturedCard = () => {
         style={{ ...styles.image }}
       />
       <View style={{ alignItems: "flex-start", flex: 1, justifyContent: "flex-end" }}>
-        <Text style={{ color: useTheme(dark).defautlText, fontWeight: "bold", marginBottom: 10 }}>News Description | Header</Text>
+        <Text style={{ color: useTheme(dark).white, fontWeight: "bold", marginBottom: 10 }}>News Description | Header</Text>
         <Pressable
           style={{ backgroundColor: useTheme(dark).appColor, paddingHorizontal: 15, paddingVertical: 7, borderRadius: 20 }}
           onPress={() => Linking.openURL("https://www.google.com")}>
-          <Text style={{ color: useTheme(dark).defautlText, fontWeight: "bold", fontSize: 12 }}>Read More</Text>
+          <Text style={{ color: useTheme(dark).white, fontWeight: "bold", fontSize: 12 }}>Read More</Text>
         </Pressable>
       </View>
     </View>

@@ -9,6 +9,7 @@ import { globalStyles } from '../../constants/styles'
 import { topics } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
 import FeaturedCard from '../../components/FeaturedCard'
+import { StatusBar } from 'expo-status-bar'
 
 
 const HomeScreen = ({ navigation }: any) => {
@@ -29,6 +30,7 @@ const HomeScreen = ({ navigation }: any) => {
 
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
+      <StatusBar style={dark ? "light" : "dark"} />
       {/* header */}
       <View style={styles.header}>
         <Text style={{ ...styles.headerText, color: useTheme(dark).defautlText }}>Berita</Text>
@@ -97,7 +99,7 @@ const HomeScreen = ({ navigation }: any) => {
                 key={i}
                 onPress={() => setActiveIndex(i)}
                 style={{ ...styles.newsTopic, backgroundColor: activeIndex === i ? useTheme(dark).appColor : useTheme(dark).secBg, borderColor: useTheme(dark).appColor }}>
-                <Text style={{ color: activeIndex === i ? useTheme(dark).defautlText : useTheme(dark).appColor, fontSize: 14 }}>{item.topic}</Text>
+                <Text style={{ color: activeIndex === i ? useTheme(dark).white : useTheme(dark).appColor, fontSize: 14 }}>{item.topic}</Text>
               </TouchableHighlight>
             ))}
           </ScrollView>

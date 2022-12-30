@@ -6,7 +6,7 @@ import { TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { BottomSheet } from 'react-native-btr'
-// import BottomSheet from 'react-native-simple-bottom-sheet';
+
 
 
 const Settings = ({ navigation }: any) => {
@@ -34,24 +34,25 @@ const Settings = ({ navigation }: any) => {
             style={{ paddingVertical: 15, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <View style={{ backgroundColor: `${useTheme(dark).appColor}20`, width: 40, height: 40, borderRadius: 25, alignItems: "center", justifyContent: "center" }}>
-                <Ionicons name="person" size={14} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+                <Ionicons name="person" size={14} color={useTheme(dark).appColor} />
               </View>
               <Text style={{ marginLeft: 10, color: useTheme(dark).defautlText, fontSize: 13, fontWeight: "bold" }}>Edit Profile</Text>
             </View>
-            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
         </View>
         <View>
           <View style={{ backgroundColor: useTheme(dark).inputColor, height: 1, width: "100%" }} />
           <TouchableOpacity
+            onPress={() => navigation.navigate("NotificationSettings")}
             style={{ paddingVertical: 15, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <View style={{ backgroundColor: `${useTheme(dark).appColor}20`, width: 40, height: 40, borderRadius: 25, alignItems: "center", justifyContent: "center" }}>
-                <Ionicons name="notifications" size={14} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+                <Ionicons name="notifications" size={14} color={useTheme(dark).appColor} />
               </View>
               <Text style={{ marginLeft: 10, color: useTheme(dark).defautlText, fontSize: 13, fontWeight: "bold" }}>Notification</Text>
             </View>
-            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
         </View>
         <View>
@@ -60,37 +61,39 @@ const Settings = ({ navigation }: any) => {
             style={{ paddingVertical: 15, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <View style={{ backgroundColor: `${useTheme(dark).appColor}20`, width: 40, height: 40, borderRadius: 25, alignItems: "center", justifyContent: "center" }}>
-                <FontAwesome5 name="unlock-alt" size={14} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+                <FontAwesome5 name="unlock-alt" size={14} color={useTheme(dark).appColor} />
               </View>
               <Text style={{ marginLeft: 10, color: useTheme(dark).defautlText, fontSize: 13, fontWeight: "bold" }}>Security</Text>
             </View>
-            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
         </View>
         <View>
           <View style={{ backgroundColor: useTheme(dark).inputColor, height: 1, width: "100%" }} />
           <TouchableOpacity
+            onPress={() => navigation.navigate("Appearance")}
             style={{ paddingVertical: 15, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <View style={{ backgroundColor: `${useTheme(dark).appColor}20`, width: 40, height: 40, borderRadius: 25, alignItems: "center", justifyContent: "center" }}>
-                <MaterialIcons name="visibility" size={16} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+                <MaterialIcons name="visibility" size={16} color={useTheme(dark).appColor} />
               </View>
               <Text style={{ marginLeft: 10, color: useTheme(dark).defautlText, fontSize: 13, fontWeight: "bold" }}>Appearance</Text>
             </View>
-            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
         </View>
         <View>
           <View style={{ backgroundColor: useTheme(dark).inputColor, height: 1, width: "100%" }} />
           <TouchableOpacity
+            onPress={() => navigation.navigate("Help")}
             style={{ paddingVertical: 15, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <View style={{ backgroundColor: `${useTheme(dark).appColor}20`, width: 40, height: 40, borderRadius: 25, alignItems: "center", justifyContent: "center" }}>
-                <MaterialCommunityIcons name="alert-circle" size={14} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+                <MaterialCommunityIcons name="alert-circle" size={14} color={useTheme(dark).appColor} />
               </View>
               <Text style={{ marginLeft: 10, color: useTheme(dark).defautlText, fontSize: 13, fontWeight: "bold" }}>Help</Text>
             </View>
-            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
         </View>
         <View>
@@ -100,11 +103,11 @@ const Settings = ({ navigation }: any) => {
             style={{ paddingVertical: 15, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <View style={{ backgroundColor: `${useTheme(dark).appColor}20`, width: 40, height: 40, borderRadius: 25, alignItems: "center", justifyContent: "center" }}>
-                <MaterialIcons name="logout" size={14} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+                <MaterialIcons name="logout" size={14} color={useTheme(dark).appColor} />
               </View>
               <Text style={{ marginLeft: 10, color: useTheme(dark).defautlText, fontSize: 13, fontWeight: "bold" }}>Logout</Text>
             </View>
-            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+            <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -114,10 +117,10 @@ const Settings = ({ navigation }: any) => {
         onBackdropPress={toggle}
       >
         <View style={[styles.card,
-        { backgroundColor: useTheme(dark).bg}
+        { backgroundColor: useTheme(dark).bg }
         ]}>
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
-            <MaterialIcons name="logout" size={40} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+            <MaterialIcons name="logout" size={40} color={useTheme(dark).appColor} />
           </View>
           <Text style={{ color: useTheme(dark).defautlText, textAlign: "center", fontWeight: "bold", fontSize: 13 }}>Are you sure you want to logout?</Text>
           <View
@@ -147,7 +150,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     justifyContent: "space-between",
     alignItems: "center",
-     borderTopEndRadius: 30,
+    borderTopEndRadius: 30,
     borderTopStartRadius: 30,
     elevation: 10,
   },

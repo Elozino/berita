@@ -1,6 +1,9 @@
 // export { default as Home } from "./Home";
-// export { default as Home } from "./Home";
-// export { default as Home } from "./Home";
+export { default as NotificationSettings } from "./NotificationSettings";
+export { default as Appearance } from "./Appearance";
+export { default as ContactUs } from "./ContactUs";
+export { default as AboutUs } from "./AboutUs";
+export { default as Help } from "./Help";
 export { default as EditProfile } from "./EditProfile";
 export { default as Settings } from "./Settings";
 export { default as Notification } from "./Notification";

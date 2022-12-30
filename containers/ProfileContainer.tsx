@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { EditProfile, Settings, UserProfile } from '../screens/Home'
+import { AboutUs, Appearance, ContactUs, EditProfile, Help, NotificationSettings, Settings, UserProfile } from '../screens/Home'
 
 const Stack = createNativeStackNavigator()
 const ProfileContainer = () => {
@@ -10,6 +10,11 @@ const ProfileContainer = () => {
       <Stack.Screen name="UserProfile" component={UserProfile} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Help" component={Help} />
+      <Stack.Screen name="AboutUs" component={AboutUs} />
+      <Stack.Screen name="ContactUs" component={ContactUs} />
+      <Stack.Screen name="Appearance" component={Appearance} />
+      <Stack.Screen name="NotificationSettings" component={NotificationSettings} />
     </Stack.Navigator>
 
   )
