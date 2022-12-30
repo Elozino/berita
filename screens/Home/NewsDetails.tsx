@@ -6,7 +6,17 @@ import { TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 
-const NewsDetails = ({ route, navigation }) => {
+
+interface IProps {
+  navigation: any;
+  route: {
+    params: {
+      topic: string;
+      image: undefined;
+    }
+  }
+}
+const NewsDetails = ({ route, navigation }: IProps) => {
   const { dark } = useContext(Context) as TContext
   const { topic, image } = route.params
 
@@ -44,12 +54,12 @@ const NewsDetails = ({ route, navigation }) => {
             <Ionicons name="share-social" size={18} color={useTheme(dark).appColor} />
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={() => navigation.navigate("Notification")}
+            // onPress={() => navigation.navigate("Notification")}
             style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, }}>
             <Ionicons name="bookmark-outline" size={18} color={useTheme(dark).appColor} />
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={() => navigation.navigate("Notification")}
+            // onPress={() => navigation.navigate("Notification")}
             style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, }}>
             <MaterialCommunityIcons name="dots-vertical" size={18} color={useTheme(dark).appColor} />
           </TouchableHighlight>

@@ -1,4 +1,6 @@
 // export { default as Home } from "./Home";
+export { default as AllNews } from "./AllNews";
+export { default as SecuritySettings } from "./SecuritySettings";
 export { default as NotificationSettings } from "./NotificationSettings";
 export { default as Appearance } from "./Appearance";
 export { default as ContactUs } from "./ContactUs";
@@ -15,5 +17,4 @@ export { default as Bookmark } from "./Bookmark";
 export { default as Profile } from "./Profile";
 export { default as UserProfile } from "./UserProfile";
 export { default as Search } from "./Search";
-export { default as Lists } from "./Lists";
-
+export { default as MyNews } from "./MyNews";

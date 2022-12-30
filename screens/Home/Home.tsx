@@ -1,13 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { FC, useContext } from 'react'
-import { HomeScreen, Bookmark, UserProfile, Search, Lists } from "./"
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { TContext } from '../../types';
 import { Context } from '../../context/ContextApp';
 import { useTheme } from '../../utils/theme';
 import { StatusBar } from 'expo-status-bar';
-import { BookmarkContainer, HomeContainer, ListsContainer, ProfileContainer, SearchContainer } from '../../containers';
+import { BookmarkContainer, HomeContainer, MyNewsContainer, ProfileContainer, SearchContainer } from '../../containers';
 
 
 const Tab = createBottomTabNavigator();
@@ -55,7 +54,7 @@ const Home: FC = () => {
             ),
           }}
         />
-        <Tab.Screen name="ListsContainer" component={ListsContainer}
+        <Tab.Screen name="MyNewsContainer" component={MyNewsContainer}
           options={{
             tabBarLabel: '',
             tabBarIcon: ({ color, size }) => (

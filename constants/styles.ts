@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { useTheme } from "../utils/theme";
 
 export const globalStyles = StyleSheet.create({
   // BUTTON
@@ -14,7 +13,7 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 50,
     padding: 7,
     paddingHorizontal: 20,
-    marginVertical: 20,
+    marginVertical: 15,
   },
   inputWrapper: {
     flexDirection: "row",

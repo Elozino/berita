@@ -8,24 +8,27 @@ import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-ic
 import { globalStyles } from '../../constants/styles'
 import { topics } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
-import { useNavigation } from '@react-navigation/native'
 
-const Lists = () => {
+
+const MyNews = ({ navigation }: any) => {
   const { dark } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
-  const navigation = useNavigation()
+
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
       {/* header */}
       <View style={styles.header}>
-        <Text style={{ ...styles.headerText, color: useTheme(dark).defautlText }}>My News</Text>
+        <View style={{ flexDirection: "row", alignItems: "center" }} >
+          <MaterialCommunityIcons name="arrow-left" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
+          <Text style={{ color: useTheme(dark).defautlText, marginLeft: 10, fontSize: 20 }}>My News</Text>
+        </View>
         <View style={{ flexDirection: "row" }}>
           <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, }}>
             <Ionicons name="archive" size={18} color={useTheme(dark).appColor} />
           </TouchableHighlight>
-          <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, marginLeft: 10 }}>
+          {/* <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, marginLeft: 10 }}>
             <MaterialCommunityIcons name="dots-vertical" size={18} color={useTheme(dark).appColor} />
-          </TouchableHighlight>
+          </TouchableHighlight> */}
         </View>
       </View>
 
@@ -75,7 +78,7 @@ const Lists = () => {
         >
           <View style={{ marginTop: 10 }}>
             {
-              topics.map(((item, i) => <NewsCard key={i} data={item} />))
+              topics.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
             }
           </View>
         </ScrollView>
@@ -83,7 +86,7 @@ const Lists = () => {
 
       <View>
         <TouchableHighlight
-        onPress={()=> navigation.navigate("CreateNews")}
+          onPress={() => navigation.navigate("CreateNews")}
           style={{ ...styles.floatBtn, backgroundColor: useTheme(dark).appColor }}>
           <Ionicons name="add" size={28} color={useTheme(dark).defautlText} />
         </TouchableHighlight>
@@ -93,7 +96,7 @@ const Lists = () => {
   )
 }
 
-export default Lists
+export default MyNews
 
 const styles = StyleSheet.create({
   header: {

@@ -10,7 +10,7 @@ import { topics } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
 
 
-const Search = ({ navigation }: any) => {
+const AllNews = ({ navigation }: any) => {
   const { dark } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -32,7 +32,7 @@ const Search = ({ navigation }: any) => {
       <View style={styles.header}>
         <View style={{ flexDirection: "row", alignItems: "center" }} >
           <MaterialCommunityIcons name="arrow-left" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
-          <Text style={{ color: useTheme(dark).defautlText, marginLeft: 10, fontSize: 20 }}>Search</Text>
+          <Text style={{ color: useTheme(dark).defautlText, marginLeft: 10, fontSize: 20 }}>All News</Text>
         </View>
       </View>
 
@@ -41,7 +41,7 @@ const Search = ({ navigation }: any) => {
         <View style={[globalStyles.searchWrapper, { backgroundColor: useTheme(dark).secBg, flex: 1 }]}>
           <TextInput
             keyboardType='default'
-            placeholder='Search'
+            placeholder='AllNews'
             placeholderTextColor={useTheme(dark).inputColor}
             style={[globalStyles.inputField, { color: useTheme(dark).defautlText }]} />
           <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }}>
@@ -77,10 +77,6 @@ const Search = ({ navigation }: any) => {
 
       {/* search results */}
       <View style={{ flex: 1 }}>
-        <View style={{ ...styles.header, marginVertical: 10 }}>
-          <Text style={{ color: useTheme(dark).defautlText, fontWeight: "500" }}>Search Results</Text>
-          <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>100 founds</Text>
-        </View>
         {/* no results */}
         {/* <NoResults /> */}
 
@@ -99,7 +95,7 @@ const Search = ({ navigation }: any) => {
   )
 }
 
-export default Search
+export default AllNews
 
 const styles = StyleSheet.create({
   header: {

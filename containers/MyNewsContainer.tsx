@@ -1,20 +1,20 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Lists, CreateNews } from '../screens/Home'
+import { MyNews, CreateNews } from '../screens/Home'
 
 
 const Stack = createNativeStackNavigator()
-const ListsContainer = () => {
+const MyNewsContainer = () => {
   return (
     <Stack.Navigator screenOptions={{ header: () => null }}>
-      <Stack.Screen name="Lists" component={Lists} />
+      <Stack.Screen name="MyNews" component={MyNews} />
       <Stack.Screen name="CreateNews" component={CreateNews} />
     </Stack.Navigator>
 
   )
 }
 
-export default ListsContainer
+export default MyNewsContainer
 
 const styles = StyleSheet.create({})

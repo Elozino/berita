@@ -17,12 +17,12 @@ const Notification = ({ navigation }: any) => {
           <MaterialCommunityIcons name="arrow-left" size={24} color={useTheme(dark).appColor} onPress={() => navigation.goBack()} />
           <Text style={{ color: useTheme(dark).defautlText, marginLeft: 10, fontSize: 20 }}>Notification</Text>
         </View>
-        <TouchableHighlight
+        {/* <TouchableHighlight
           style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, }}
           onPress={() => navigation.goBack()}
         >
           <MaterialCommunityIcons name="dots-vertical" size={18} color={useTheme(dark).appColor} />
-        </TouchableHighlight>
+        </TouchableHighlight> */}
       </View>
 
       {/* no notification */}

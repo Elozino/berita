@@ -28,7 +28,8 @@ const Settings = ({ navigation }: any) => {
           marginTop: 15
         }}
       >
-        <View>
+        {/* edit profile */}
+        {/* <View>
           <View style={{ backgroundColor: useTheme(dark).inputColor, height: 1, width: "100%" }} />
           <TouchableOpacity
             style={{ paddingVertical: 15, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
@@ -40,7 +41,9 @@ const Settings = ({ navigation }: any) => {
             </View>
             <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
-        </View>
+        </View> */}
+
+        {/* notification */}
         <View>
           <View style={{ backgroundColor: useTheme(dark).inputColor, height: 1, width: "100%" }} />
           <TouchableOpacity
@@ -55,9 +58,12 @@ const Settings = ({ navigation }: any) => {
             <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
         </View>
+
+        {/* security */}
         <View>
           <View style={{ backgroundColor: useTheme(dark).inputColor, height: 1, width: "100%" }} />
           <TouchableOpacity
+            onPress={() => navigation.navigate("SecuritySettings")}
             style={{ paddingVertical: 15, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <View style={{ backgroundColor: `${useTheme(dark).appColor}20`, width: 40, height: 40, borderRadius: 25, alignItems: "center", justifyContent: "center" }}>
@@ -68,6 +74,8 @@ const Settings = ({ navigation }: any) => {
             <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
         </View>
+
+        {/* appearance */}
         <View>
           <View style={{ backgroundColor: useTheme(dark).inputColor, height: 1, width: "100%" }} />
           <TouchableOpacity
@@ -82,6 +90,8 @@ const Settings = ({ navigation }: any) => {
             <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
         </View>
+
+        {/* help */}
         <View>
           <View style={{ backgroundColor: useTheme(dark).inputColor, height: 1, width: "100%" }} />
           <TouchableOpacity
@@ -96,6 +106,8 @@ const Settings = ({ navigation }: any) => {
             <MaterialCommunityIcons name="chevron-right" size={24} color={useTheme(dark).appColor} />
           </TouchableOpacity>
         </View>
+
+        {/* logout */}
         <View>
           <View style={{ backgroundColor: useTheme(dark).inputColor, height: 1, width: "100%" }} />
           <TouchableOpacity
@@ -111,6 +123,8 @@ const Settings = ({ navigation }: any) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
+
+      {/* bottom logout modal */}
       <BottomSheet
         visible={visible}
         onBackButtonPress={toggle}

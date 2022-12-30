@@ -79,7 +79,7 @@ const HomeScreen = ({ navigation }: any) => {
         <View>
           <View style={{ ...styles.header, marginTop: 5 }}>
             <Text style={{ color: useTheme(dark).defautlText, fontWeight: "500" }}>News</Text>
-            <Pressable>
+            <Pressable onPress={() => navigation.navigate("AllNews")}>
               <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>See all</Text>
             </Pressable>
           </View>
