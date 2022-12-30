@@ -4,11 +4,12 @@ import { onboardingData } from '../constants/data';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '../utils/theme';
 import { Context } from '../context/ContextApp';
+import { TContext } from '../types';
 
-const OnBoarding: FC = () => {
-  const { dark } = useContext(Context)
+const OnBoarding: FC = ({ navigation }: any) => {
+  const { dark } = useContext(Context) as TContext
   const [currentIndex, setCurrentIndex] = useState<number>(0)
-  const navigation = useNavigation()
+  // const navigation = useNavigation()
 
   const nextHandler = () => {
     let index = currentIndex
@@ -51,7 +52,7 @@ const OnBoarding: FC = () => {
               </View>
               <View style={{ height: 40, marginVertical: 30, alignItems: "center" }}>
                 <View>
-                  <TouchableOpacity style={{ alignItems: "center" }} onPress={() => navigation.navigate("Auth", {})}>
+                  <TouchableOpacity style={{ alignItems: "center" }} onPress={() => navigation.navigate("Auth")}>
                     <Text style={{ fontSize: 16, color: "#fff" }}>Skip</Text>
                   </TouchableOpacity>
                   <View style={styles.dotsContainer}>
