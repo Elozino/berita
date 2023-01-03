@@ -23,6 +23,7 @@ const Auth: FC = ({ navigation }: any) => {
   }
 
   const handleAuth = () => {
+    Keyboard.dismiss()
     setErrorMsg({ ...errorMsg, email: "", password: "" })
     if (loginMode === "signup") {
       setLoading(true)
@@ -86,7 +87,7 @@ const Auth: FC = ({ navigation }: any) => {
             console.log("Wrong password! Please check your password");
             setErrorMsg({ ...errorMsg, password: "Wrong password! Please check your password" })
           }
-
+          setLoading(false)
           console.error(error);
         });
     }

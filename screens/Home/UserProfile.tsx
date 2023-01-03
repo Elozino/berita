@@ -1,13 +1,15 @@
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import React, { useContext } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { useTheme } from '../../utils/theme'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import * as ImagePicker from 'expo-image-picker';
 
 const UserProfile = ({ navigation }: any) => {
-  const { dark } = useContext(Context) as TContext
+  const { dark, userInfo, setUserInfo } = useContext(Context) as TContext
+
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
       {/* header */}
@@ -15,7 +17,7 @@ const UserProfile = ({ navigation }: any) => {
         <Text style={{ ...styles.headerText, color: useTheme(dark).defautlText }}>My Profile</Text>
         <View style={{ flexDirection: "row" }}>
           <TouchableHighlight
-            onPress={() => navigation.navigate("EditProfile")}
+            onPress={() => navigation.navigate("EditUserProfile")}
             style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, }}>
             <MaterialIcons name="edit" size={18} color={useTheme(dark).appColor} />
           </TouchableHighlight>
@@ -30,13 +32,23 @@ const UserProfile = ({ navigation }: any) => {
       {/* profile avatar */}
       <View style={styles.avatarWrapper}>
         <View style={[{ backgroundColor: useTheme(dark).defautlText }, styles.avatarBox]}>
-          <TouchableHighlight style={{ backgroundColor: useTheme(dark).appColor, position: "absolute", bottom: -5, right: 10, borderRadius: 50, padding: 4 }}>
-            <MaterialIcons name="edit" size={24} color={useTheme(dark).white} />
-          </TouchableHighlight>
+          {userInfo.profilePicture && <Image source={{ uri: userInfo.profilePicture }} style={{ width: "100%", height: "100%", borderRadius: 100 }} resizeMode="cover" />}
         </View>
-        <Text style={{ color: useTheme(dark).defautlText, marginTop: 20, fontSize: 22, fontWeight: "bold" }}>Elozino A. Ovedhe</Text>
       </View>
 
+      {/* name */}
+      <Text style={{ color: useTheme(dark).defautlText, marginTop: 20, fontSize: 22, fontWeight: "bold" }}>Elozino A. Ovedhe</Text>
+
+      {/* username */}
+      <Text>Username</Text>
+
+      {/* about */}
+      <Text>About You</Text>
+
+      {/* website */}
+      <Pressable>
+        <Text>Website</Text>
+      </Pressable>
 
     </SafeAreaView>
   )

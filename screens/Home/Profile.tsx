@@ -7,7 +7,7 @@ import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-ic
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTheme } from '../../utils/theme'
 import { globalStyles } from '../../constants/styles'
-
+import * as ImagePicker from 'expo-image-picker';
 
 const Profile = ({ navigation }: any) => {
   const { dark, userInfo, setUserInfo } = useContext(Context) as TContext
@@ -22,6 +22,21 @@ const Profile = ({ navigation }: any) => {
     setModalVisible(true)
   }
 
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setUserInfo({ ...userInfo, profilePicture: result.assets[0].uri });
+    }
+  };
 
   useEffect(() => {
     if (userInfo.username === "" || userInfo.fullname === "" || userInfo.website === "" || userInfo.telephone === "") {
@@ -43,6 +58,7 @@ const Profile = ({ navigation }: any) => {
       {/* profile avatar */}
       <View style={styles.avatarWrapper}>
         <View style={[{ backgroundColor: useTheme(dark).defautlText }, styles.avatarBox]}>
+          {userInfo.profilePicture && <Image source={{ uri: userInfo.profilePicture }} style={{ width: "100%", height: "100%" }} resizeMode="cover" />}
           <TouchableHighlight style={{ backgroundColor: useTheme(dark).appColor, position: "absolute", bottom: -5, right: 10, borderRadius: 50, padding: 4 }}>
             <MaterialIcons name="edit" size={24} color={useTheme(dark).white} />
           </TouchableHighlight>
