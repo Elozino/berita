@@ -68,8 +68,8 @@ const Search = ({ navigation }: any) => {
             <TouchableHighlight
               key={i}
               onPress={() => setActiveIndex(i)}
-              style={{ ...styles.newsTopic, backgroundColor: activeIndex === i ? useTheme(dark).appColor : useTheme(dark).secBg, borderColor: useTheme(dark).appColor }}>
-              <Text style={{ color: activeIndex === i ? useTheme(dark).defautlText : useTheme(dark).appColor, fontSize: 14 }}>{item.topic}</Text>
+              style={{ ...styles.newsTopic, backgroundColor: activeIndex === i ? useTheme(dark).appColor : "transparent", borderColor: useTheme(dark).appColor }}>
+              <Text style={{ color: activeIndex === i ? useTheme(dark).white : useTheme(dark).appColor, fontSize: 14 }}>{item.topic}</Text>
             </TouchableHighlight>
           ))}
         </ScrollView>

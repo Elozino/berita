@@ -30,7 +30,7 @@ const HomeScreen = ({ navigation }: any) => {
   useLayoutEffect(() => {
     fetchData()
   }, [country, category])
-  console.log(news)
+  // console.log(news)
 
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
@@ -112,7 +112,7 @@ const HomeScreen = ({ navigation }: any) => {
                         setActiveIndex(i)
                         setCategory(item.category)
                       }}
-                      style={{ ...styles.newsTopic, backgroundColor: activeIndex === i ? useTheme(dark).appColor : useTheme(dark).secBg, borderColor: useTheme(dark).appColor }}>
+                      style={{ ...styles.newsTopic, backgroundColor: activeIndex === i ? useTheme(dark).appColor : "transparent", borderColor: useTheme(dark).appColor }}>
                       <Text style={{ color: activeIndex === i ? useTheme(dark).white : useTheme(dark).appColor, fontSize: 14 }}>{item.category}</Text>
                     </TouchableHighlight>
                   ))}

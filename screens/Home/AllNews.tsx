@@ -11,7 +11,7 @@ import NewsCard from '../../components/NewsCard'
 
 
 const AllNews = ({ navigation }: any) => {
-  const { dark } = useContext(Context) as TContext
+  const { dark, news } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
 
   const NoResults = () => {
@@ -68,8 +68,8 @@ const AllNews = ({ navigation }: any) => {
             <TouchableHighlight
               key={i}
               onPress={() => setActiveIndex(i)}
-              style={{ ...styles.newsTopic, backgroundColor: activeIndex === i ? useTheme(dark).appColor : useTheme(dark).secBg, borderColor: useTheme(dark).appColor }}>
-              <Text style={{ color: activeIndex === i ? useTheme(dark).defautlText : useTheme(dark).appColor, fontSize: 14 }}>{item.topic}</Text>
+              style={{ ...styles.newsTopic, backgroundColor: activeIndex === i ? useTheme(dark).appColor : "transparent", borderColor: useTheme(dark).appColor }}>
+              <Text style={{ color: activeIndex === i ? useTheme(dark).white : useTheme(dark).appColor, fontSize: 14 }}>{item.topic}</Text>
             </TouchableHighlight>
           ))}
         </ScrollView>
@@ -86,7 +86,7 @@ const AllNews = ({ navigation }: any) => {
         >
           <View style={{ marginTop: 10 }}>
             {
-              topics.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
+              news.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
             }
           </View>
         </ScrollView>

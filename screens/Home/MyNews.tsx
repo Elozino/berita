@@ -11,7 +11,7 @@ import NewsCard from '../../components/NewsCard'
 
 
 const MyNews = ({ navigation }: any) => {
-  const { dark, news} = useContext(Context) as TContext
+  const { dark, news } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
@@ -64,8 +64,8 @@ const MyNews = ({ navigation }: any) => {
             <TouchableHighlight
               key={i}
               onPress={() => setActiveIndex(i)}
-              style={{ ...styles.newsTopic, backgroundColor: activeIndex === i ? useTheme(dark).appColor : useTheme(dark).secBg, borderColor: useTheme(dark).appColor }}>
-              <Text style={{ color: activeIndex === i ? useTheme(dark).defautlText : useTheme(dark).appColor, fontSize: 14 }}>{item.topic}</Text>
+              style={{ ...styles.newsTopic, backgroundColor: activeIndex === i ? useTheme(dark).appColor : "transparent", borderColor: useTheme(dark).appColor }}>
+              <Text style={{ color: activeIndex === i ? useTheme(dark).white : useTheme(dark).appColor, fontSize: 14 }}>{item.topic}</Text>
             </TouchableHighlight>
           ))}
         </ScrollView>
@@ -88,7 +88,7 @@ const MyNews = ({ navigation }: any) => {
         <TouchableHighlight
           onPress={() => navigation.navigate("CreateNews")}
           style={{ ...styles.floatBtn, backgroundColor: useTheme(dark).appColor }}>
-          <Ionicons name="add" size={28} color={useTheme(dark).defautlText} />
+          <Ionicons name="add" size={28} color={useTheme(dark).white} />
         </TouchableHighlight>
       </View>
 
