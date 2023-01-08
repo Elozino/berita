@@ -6,7 +6,7 @@ import { Context } from '../../context/ContextApp'
 import { useTheme } from '../../utils/theme'
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { globalStyles } from '../../constants/styles'
-import { categories, topics } from '../../constants/data'
+import { categories } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
 
 
@@ -60,12 +60,12 @@ const MyNews = ({ navigation }: any) => {
             marginVertical: 10,
             width: "250%"
           }}>
-          {topics.map((item, i) => (
+          {categories.map((item, i) => (
             <TouchableHighlight
               key={i}
               onPress={() => setActiveIndex(i)}
               style={{ ...styles.newsTopic, backgroundColor: activeIndex === i ? useTheme(dark).appColor : "transparent", borderColor: useTheme(dark).appColor }}>
-              <Text style={{ color: activeIndex === i ? useTheme(dark).white : useTheme(dark).appColor, fontSize: 14 }}>{item.topic}</Text>
+              <Text style={{ color: activeIndex === i ? useTheme(dark).white : useTheme(dark).appColor, fontSize: 14 }}>{item.category}</Text>
             </TouchableHighlight>
           ))}
         </ScrollView>
