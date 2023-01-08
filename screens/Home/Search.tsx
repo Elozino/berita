@@ -11,7 +11,7 @@ import NewsCard from '../../components/NewsCard'
 
 
 const Search = ({ navigation }: any) => {
-  const { dark } = useContext(Context) as TContext
+  const { dark, news } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
 
   const NoResults = () => {
@@ -90,7 +90,7 @@ const Search = ({ navigation }: any) => {
         >
           <View style={{ marginTop: 10 }}>
             {
-              topics.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
+              news.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
             }
           </View>
         </ScrollView>

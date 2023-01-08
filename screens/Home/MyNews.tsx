@@ -6,12 +6,12 @@ import { Context } from '../../context/ContextApp'
 import { useTheme } from '../../utils/theme'
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { globalStyles } from '../../constants/styles'
-import { topics } from '../../constants/data'
+import { categories, topics } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
 
 
 const MyNews = ({ navigation }: any) => {
-  const { dark } = useContext(Context) as TContext
+  const { dark, news} = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
@@ -78,7 +78,7 @@ const MyNews = ({ navigation }: any) => {
         >
           <View style={{ marginTop: 10 }}>
             {
-              topics.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
+              news.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
             }
           </View>
         </ScrollView>

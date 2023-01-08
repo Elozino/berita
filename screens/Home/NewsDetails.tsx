@@ -1,4 +1,4 @@
-import { Image, ScrollView, Share, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Image, Linking, Pressable, ScrollView, Share, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import React, { useContext } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTheme } from '../../utils/theme'
@@ -11,14 +11,38 @@ interface IProps {
   navigation: any;
   route: {
     params: {
-      topic: string;
-      image: undefined;
+      title: string;
+      urlToImage: string;
+      source: {
+        name: string;
+      };
+      content: string;
+      publishedAt: string;
+      author: string;
+      url: string;
     }
   }
 }
 const NewsDetails = ({ route, navigation }: IProps) => {
-  const { dark } = useContext(Context) as TContext
-  const { topic, image } = route.params
+  const { dark, category } = useContext(Context) as TContext
+  const { title, urlToImage, source, content, publishedAt, author, url } = route.params
+
+  const datePublished: any = new Date(publishedAt)
+  const currentDate: any = new Date()
+
+  const date = (currentDate - datePublished) / (1000 * 3600 * 24)
+
+
+  const formatDate = (value: number) => {
+    let formattedDate: any
+    if (date < 1) {
+      formattedDate = value * 24
+    } else {
+      formattedDate = date
+    }
+  }
+
+  // / (1000 * 3600 * 24)
 
   const onShare = async () => {
     try {
@@ -68,24 +92,47 @@ const NewsDetails = ({ route, navigation }: IProps) => {
 
       <View style={{ flex: 1, marginTop: 20 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Image source={image} style={{ ...styles.image }} />
-          <Text style={{ ...styles.headerText, color: useTheme(dark).defautlText }}>News Headline</Text>
+          <Image source={{ uri: urlToImage }} style={{ ...styles.image }} />
+          <Text style={{ ...styles.headerText, color: useTheme(dark).defautlText }}>
+            {title}
+          </Text>
           <View style={{ flexDirection: "row", alignItems: "center", }}>
             <View style={{ flex: 1, flexDirection: "row", alignItems: "center", }}>
               <View style={{ width: 40, height: 40, borderRadius: 20, marginRight: 15, backgroundColor: "pink" }}></View>
               <View style={{ justifyContent: "space-between" }}>
-                <Text style={{ color: useTheme(dark).appColor, fontWeight: "400" }}>BBC News</Text>
-                <Text style={{ color: useTheme(dark).defautlText, fontSize: 10, letterSpacing: 1 }}>5 days ago</Text>
+                <Text style={{ color: useTheme(dark).appColor, fontWeight: "400" }}>
+                  {source.name}
+                </Text>
+                <Text style={{ color: useTheme(dark).defautlText, fontSize: 10, letterSpacing: 1 }}>
+                  {date < 1 ? `${Math.round(date * 24)} hours ago` : `${date} days ago`}
+                </Text>
               </View>
             </View>
             <View style={{ borderWidth: 1, borderColor: useTheme(dark).appColor, borderRadius: 20, paddingHorizontal: 10, paddingVertical: 3 }}>
-              <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>{topic}</Text>
+              <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>{category.charAt(0).toUpperCase() + category.slice(1)}</Text>
             </View>
           </View>
           <View style={{ marginVertical: 10 }}>
             <Text style={{ color: useTheme(dark).defautlText, lineHeight: 20, fontSize: 12, letterSpacing: 1 }}>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis error quasi molestias exercitationem odio. Nobis quidem illo sequi at, dolore explicabo dolores ipsam. Ex illum, necessitatibus odit velit consequatur fugiat iure modi amet quasi, perferendis, numquam neque? Reiciendis maiores harum eveniet est beatae eligendi, ut laboriosam assumenda, voluptatibus quam sed nulla necessitatibus unde sunt officia voluptate veritatis placeat similique recusandae? Enim praesentium quod doloremque optio, nostrum autem facere aliquam. Ipsa, ratione fugiat. Est non consequuntur dignissimos, corrupti officiis, excepturi ipsum eos quod nostrum fuga ullam cumque fugit harum nihil accusamus labore quia esse voluptate veniam enim illum sequi exercitationem saepe minus. Suscipit, dolore quasi nemo nostrum dolorem maiores sapiente quisquam reprehenderit enim voluptatibus iste ex vitae inventore! Quisquam quasi quaerat hic ipsa dolorem! Ipsam facere eos nam ad officia expedita eius repellendus delectus adipisci nesciunt animi iste eligendi vero exercitationem, culpa incidunt non possimus dolorem labore qui. Pariatur, ab culpa?
+              {content}
             </Text>
+          </View>
+          <View>
+            <Text style={{ color: useTheme(dark).defautlText, fontWeight: "bold", letterSpacing: 1 }}>
+              Author : {author?.split(",")[0]}
+            </Text>
+            <Pressable
+              style={{
+                backgroundColor: useTheme(dark).appColor,
+                width: 80,
+                justifyContent: "center",
+                alignContent: "center",
+                paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20,
+                marginTop: 10
+              }}
+              onPress={() => Linking.openURL(url)}>
+              <Text style={{ color: useTheme(dark).white, fontWeight: "bold", fontSize: 12, textAlign: "center" }}>Read More</Text>
+            </Pressable>
           </View>
         </ScrollView>
       </View>

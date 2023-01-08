@@ -9,29 +9,39 @@ interface IProps {
   data: {
     image: any;
     topic: string;
+    title: string;
+    urlToImage: string;
+    content: string;
+    source: {
+      name: string;
+    }
   }
 }
 
 const NewsCard = ({ navigation, data }: IProps) => {
-  const { dark } = useContext(Context) as TContext
+  const { dark, category } = useContext(Context) as TContext
 
+  // console.log(data.urlToImage)
   return (
     <TouchableOpacity
       activeOpacity={.8}
       onPress={() => navigation.navigate("NewsDetails", data)}>
       <View style={{ ...styles.wrapper, backgroundColor: useTheme(dark).secBg }}>
-        <Image source={data.image} style={{ ...styles.image }} />
+        <Image source={{ uri: data?.urlToImage }} style={{ ...styles.image }} />
         <View style={{ ...styles.content }}>
-          <Text style={{ color: useTheme(dark).defautlText }}>News Headline</Text>
+          <Text style={{ color: useTheme(dark).defautlText, fontSize: 14, fontWeight: "bold" }}>
+            {data.title?.slice(0, 40)}...
+          </Text>
           <View style={{
             flex: 1,
             flexDirection: "row",
-            alignItems: "center"
+            alignItems: "center",
+            justifyContent: "space-between"
           }}>
-            <Text style={{ color: useTheme(dark).defautlText }}>News Source</Text>
+            <Text style={{ color: useTheme(dark).defautlText, fontSize: 12, }}>{data.source.name}</Text>
             <View
               style={{ ...styles.newsTopic, backgroundColor: useTheme(dark).secBg, borderColor: useTheme(dark).appColor }}>
-              <Text style={{ color: useTheme(dark).appColor, fontSize: 14 }}>{data.topic}</Text>
+              <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>{category.charAt(0).toUpperCase() + category.slice(1)}</Text>
             </View>
           </View>
         </View>
@@ -59,8 +69,7 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 15,
-    paddingVertical: 15,
-    paddingLeft: 15,
+    width: "60%"
   },
   newsTopic: {
     paddingHorizontal: 10,

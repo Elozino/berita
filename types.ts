@@ -61,8 +61,9 @@ export type TContext = {
     country: string;
     newsType: string;
     website: string;
-    category: any;
   };
+  category: any;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
   setUserInfo: React.Dispatch<
     React.SetStateAction<{
       fullname: string;
@@ -72,9 +73,21 @@ export type TContext = {
       country: string;
       newsType: string;
       website: string;
-      category: any;
     }>
   >;
   newSourceList: string[];
   setNewSourceList: React.Dispatch<React.SetStateAction<string[]>>;
+  news: NewsData[];
+  setNews: React.Dispatch<React.SetStateAction<NewsData[]>>;
+};
+
+export type NewsData = {
+  image: any;
+  topic: string;
+  title: string;
+  urlToImage: string;
+  content: string;
+  source: {
+    name: string;
+  };
 };
