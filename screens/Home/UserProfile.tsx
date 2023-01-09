@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { useTheme } from '../../utils/theme'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import * as ImagePicker from 'expo-image-picker';
 
 const UserProfile = ({ navigation }: any) => {
@@ -36,21 +36,50 @@ const UserProfile = ({ navigation }: any) => {
         </View>
       </View>
 
-      {/* name */}
-      <Text style={{ color: useTheme(dark).defautlText, marginTop: 20, fontSize: 22, fontWeight: "bold" }}>Elozino A. Ovedhe</Text>
-
+      <View style={{ flexDirection: "column", alignItems: "center" }}>
+        {/* name */}
+        <Text style={{ color: useTheme(dark).defautlText, marginTop: 20, fontSize: 22, fontWeight: "bold" }}>Elozino A. Ovedhe</Text>
+        {/* about */}
+        <Text style={{ color: useTheme(dark).defautlText, marginVertical: 10, textAlign: "center" }}>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. A illum velit doloribus exercitationem quidem que!
+        </Text>
+      </View>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginVertical: 10 }}>
+        <View style={{ alignItems: "center" }}>
+          <Text style={{ color: useTheme(dark).appColor, fontSize: 16, fontWeight: "bold" }}>
+            Total News
+          </Text>
+          <Text style={{ color: useTheme(dark).defautlText, fontSize: 22, marginTop: 5 }}>
+            300
+          </Text>
+        </View>
+        <View style={{ height: 60, width: 1, backgroundColor: useTheme(dark).appColor }} />
+        <View style={{ alignItems: "center" }}>
+          <Text style={{ color: useTheme(dark).appColor, fontSize: 16, fontWeight: "bold" }}>
+            Total News
+          </Text>
+          <Text style={{ color: useTheme(dark).defautlText, fontSize: 22, marginTop: 5 }}>
+            300
+          </Text>
+        </View>
+        <View style={{ height: 60, width: 1, backgroundColor: useTheme(dark).appColor }} />
+        <View style={{ alignItems: "center" }}>
+          <Text style={{ color: useTheme(dark).appColor, fontSize: 16, fontWeight: "bold" }}>
+            My News
+          </Text>
+          <Text style={{ color: useTheme(dark).defautlText, fontSize: 22, marginTop: 5 }}>
+            300
+          </Text>
+        </View>
+      </View>
+      {/* website */}
+      <Pressable style={{ marginTop: 20, backgroundColor: useTheme(dark).appColor, flexDirection: "row", justifyContent: "center", alignItems: "center", paddingVertical: 10, borderRadius: 30 }}>
+        <MaterialCommunityIcons name="web" color={useTheme(dark).white} size={16} />
+        <Text style={{ color: useTheme(dark).white }}> Website</Text>
+      </Pressable>
       {/* username */}
       <Text>Username</Text>
-
-      {/* about */}
-      <Text>About You</Text>
-
-      {/* website */}
-      <Pressable>
-        <Text>Website</Text>
-      </Pressable>
-
-    </SafeAreaView>
+    </SafeAreaView >
   )
 }
 
