@@ -8,7 +8,7 @@ import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-ic
 import * as ImagePicker from 'expo-image-picker';
 
 const UserProfile = ({ navigation }: any) => {
-  const { dark, userInfo, setUserInfo } = useContext(Context) as TContext
+  const { dark, userInfo, setUserInfo, news } = useContext(Context) as TContext
 
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
@@ -50,7 +50,7 @@ const UserProfile = ({ navigation }: any) => {
             Total News
           </Text>
           <Text style={{ color: useTheme(dark).defautlText, fontSize: 22, marginTop: 5 }}>
-            300
+            {news.length}
           </Text>
         </View>
         <View style={{ height: 60, width: 1, backgroundColor: useTheme(dark).appColor }} />
@@ -68,7 +68,7 @@ const UserProfile = ({ navigation }: any) => {
             My News
           </Text>
           <Text style={{ color: useTheme(dark).defautlText, fontSize: 22, marginTop: 5 }}>
-            300
+            0
           </Text>
         </View>
       </View>

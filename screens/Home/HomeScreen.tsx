@@ -11,6 +11,7 @@ import NewsCard from '../../components/NewsCard'
 import FeaturedCard from '../../components/FeaturedCard'
 import { StatusBar } from 'expo-status-bar'
 import { API_KEY } from '@env';
+import Loader from '../../components/Loader'
 
 
 const HomeScreen = ({ navigation }: any) => {
@@ -65,7 +66,8 @@ const HomeScreen = ({ navigation }: any) => {
       {
         news.length < 1 ? (
           <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <ActivityIndicator size="large" color={useTheme(dark).appColor} />
+            <Loader/>
+            {/* <ActivityIndicator size="large" color={useTheme(dark).appColor} /> */}
           </View>
         ) : (
           <>
