@@ -17,6 +17,8 @@ import Loader from '../../components/Loader'
 const HomeScreen = ({ navigation }: any) => {
   const { dark, userInfo: { country }, category, setCategory, news, setNews } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
+  const [filteredNews, setFilteredNews] = useState([])
+  const [input, setInput] = useState("")
 
 
   const fetchData = async () => {
@@ -31,8 +33,10 @@ const HomeScreen = ({ navigation }: any) => {
   useLayoutEffect(() => {
     fetchData()
   }, [country, category])
-  // console.log(news)
 
+  const handleFilter = (searchValue: string, newsToFilter: any[]) => {
+    const filter = newsToFilter.filter((item) => item.content.includes(searchValue) || item.title.includes(searchValue))
+  }
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
       <StatusBar style={dark ? "light" : "dark"} />
@@ -50,6 +54,8 @@ const HomeScreen = ({ navigation }: any) => {
       <View style={{ ...styles.search }}>
         <View style={[globalStyles.searchWrapper, { backgroundColor: useTheme(dark).secBg, flex: 1 }]}>
           <TextInput
+            value={input}
+            onChangeText={(text) => setInput(text)}
             keyboardType='default'
             placeholder='Search'
             placeholderTextColor={useTheme(dark).inputColor}
@@ -66,7 +72,7 @@ const HomeScreen = ({ navigation }: any) => {
       {
         news.length < 1 ? (
           <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <Loader/>
+            <Loader />
             {/* <ActivityIndicator size="large" color={useTheme(dark).appColor} /> */}
           </View>
         ) : (
