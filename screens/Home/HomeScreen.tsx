@@ -1,7 +1,7 @@
 import { ActivityIndicator, FlatList, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { TContext } from '../../types'
+import { TContext, NewsData } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { useTheme } from '../../utils/theme'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
@@ -17,7 +17,7 @@ import Loader from '../../components/Loader'
 const HomeScreen = ({ navigation }: any) => {
   const { dark, userInfo: { country }, category, setCategory, news, setNews } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
-  const [filteredNews, setFilteredNews] = useState([])
+  const [filteredNews, setFilteredNews] = useState<NewsData[]>([])
   const [input, setInput] = useState("")
 
 
@@ -27,6 +27,7 @@ const HomeScreen = ({ navigation }: any) => {
       .then(response => response.json())
       .then(data => {
         setNews(data.articles)
+        setFilteredNews(data.articles)
       })
       .catch(error => console.log(error))
   }
@@ -34,9 +35,15 @@ const HomeScreen = ({ navigation }: any) => {
     fetchData()
   }, [country, category])
 
-  const handleFilter = (searchValue: string, newsToFilter: any[]) => {
-    const filter = newsToFilter.filter((item) => item.content.includes(searchValue) || item.title.includes(searchValue))
+  const handleFilter = (searchValue: string) => {
+    const filter = news?.filter((item) => {
+      if (item.content != null && item.title != null) {
+        return item.content.toLowerCase().includes(searchValue.toLowerCase()) || item.title.toLowerCase().includes(searchValue.toLowerCase())
+      }
+    })
+    setFilteredNews(filter)
   }
+
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
       <StatusBar style={dark ? "light" : "dark"} />
@@ -60,7 +67,12 @@ const HomeScreen = ({ navigation }: any) => {
             placeholder='Search'
             placeholderTextColor={useTheme(dark).inputColor}
             style={[globalStyles.inputField, { color: useTheme(dark).defautlText }]} />
-          <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }}>
+          <TouchableOpacity
+            onPress={() => {
+              handleFilter(input)
+              navigation.navigate("Search", filteredNews)
+            }}
+            style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="search-outline" size={18} color={useTheme(dark).defautlText} />
           </TouchableOpacity>
         </View>
@@ -73,7 +85,6 @@ const HomeScreen = ({ navigation }: any) => {
         news.length < 1 ? (
           <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
             <Loader />
-            {/* <ActivityIndicator size="large" color={useTheme(dark).appColor} /> */}
           </View>
         ) : (
           <>

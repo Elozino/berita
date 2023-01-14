@@ -10,10 +10,12 @@ import { categories } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
 
 
-const Search = ({ navigation }: any) => {
+const Search = ({ navigation, route }: any) => {
+  const filters = route.params
   const { dark, news } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
 
+  console.log(filters)
   const NoResults = () => {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center", }}>
@@ -79,7 +81,7 @@ const Search = ({ navigation }: any) => {
       <View style={{ flex: 1 }}>
         <View style={{ ...styles.header, marginVertical: 10 }}>
           <Text style={{ color: useTheme(dark).defautlText, fontWeight: "500" }}>Search Results</Text>
-          <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>100 founds</Text>
+          <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>{filters.length} founds</Text>
         </View>
         {/* no results */}
         {/* <NoResults /> */}
