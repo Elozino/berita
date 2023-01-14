@@ -1,4 +1,4 @@
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, Pressable, Text } from 'react-native'
 import React, { useContext } from 'react'
 import { Context } from '../context/ContextApp';
 import { TContext } from '../types';
@@ -11,17 +11,17 @@ const Loader = () => {
       return (
         <>
           <ActivityIndicator size="large" color={useTheme(dark).appColor} />
-          <Text>ok</Text>
+          <Pressable>
+            <Text style={{ color: useTheme(dark).appColor, fontSize: 18, fontWeight: "bold" }}>Try again</Text>
+          </Pressable>
         </>
       )
     }, 10000);
   }
+
   return (
     <>
       <ActivityIndicator size="large" color={useTheme(dark).appColor} />
-      <Pressable>
-        <Text style={{ color: useTheme(dark).appColor, fontSize: 18, fontWeight: "bold" }}>Try again</Text>
-      </Pressable>
     </>
   )
 }
