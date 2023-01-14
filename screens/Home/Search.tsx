@@ -62,7 +62,7 @@ const Search = ({ navigation }: any) => {
           contentContainerStyle={{
             justifyContent: "space-between",
             marginVertical: 10,
-            width: "250%"
+            width: "160%"
           }}>
           {categories.map((item, i) => (
             <TouchableHighlight
