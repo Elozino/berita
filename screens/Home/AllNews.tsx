@@ -1,29 +1,46 @@
 import { FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTheme } from '../../utils/theme'
-import { TContext } from '../../types'
+import { NewsData, TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { globalStyles } from '../../constants/styles'
 import { categories } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
+import { API_KEY } from '@env';
 
 
 const AllNews = ({ navigation }: any) => {
-  const { dark, news } = useContext(Context) as TContext
+  const { dark, news, category } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
+  const [allNews, setAllNews] = useState<NewsData[]>([])
+  const [filteredNews, setFilteredNews] = useState<NewsData[]>([])
 
-  const NoResults = () => {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", }}>
-        <View style={{ width: 100, height: 100, backgroundColor: useTheme(dark).appColor, borderRadius: 50, justifyContent: "center", alignItems: "center" }}>
-          <FontAwesome5 name="frown" size={40} color={useTheme(dark).white} />
-        </View>
-        <Text style={{ color: useTheme(dark).appColor, fontSize: 20, fontWeight: "400", marginTop: 20 }}>No results found</Text>
-        <Text style={{ color: useTheme(dark).defautlText, fontSize: 14, fontWeight: "400", marginTop: 5 }}>Please try another keyword</Text>
-      </View>
-    )
+
+  const fetchData = async () => {
+    const url = `https://newsapi.org/v2/everything?q=${category}&apiKey=${API_KEY}`
+    await fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        setAllNews(data.articles)
+        setFilteredNews(data.articles)
+      })
+      .catch(error => console.log(error))
+  }
+
+  useLayoutEffect(() => {
+    fetchData()
+  }, [category])
+
+
+  const handleFilter = (searchValue: string) => {
+    const filter = allNews?.filter((item) => {
+      if (item.content != null && item.title != null) {
+        return item.content.toLowerCase().includes(searchValue.toLowerCase()) || item.title.toLowerCase().includes(searchValue.toLowerCase())
+      }
+    })
+    setFilteredNews(filter)
   }
 
   return (
@@ -62,7 +79,7 @@ const AllNews = ({ navigation }: any) => {
           contentContainerStyle={{
             justifyContent: "space-between",
             marginVertical: 10,
-            width: "250%"
+            width: "160%"
           }}>
           {categories.map((item, i) => (
             <TouchableHighlight
@@ -77,16 +94,12 @@ const AllNews = ({ navigation }: any) => {
 
       {/* search results */}
       <View style={{ flex: 1 }}>
-        {/* no results */}
-        {/* <NoResults /> */}
-
-        {/* yes results */}
         <ScrollView
           showsVerticalScrollIndicator={false}
         >
           <View style={{ marginTop: 10 }}>
             {
-              news.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
+              filteredNews.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
             }
           </View>
         </ScrollView>

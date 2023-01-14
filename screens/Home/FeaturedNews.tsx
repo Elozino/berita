@@ -7,7 +7,8 @@ import { Context } from '../../context/ContextApp'
 import { TContext } from '../../types'
 import FeaturedCard from '../../components/FeaturedCard'
 
-const FeaturedNews = ({ navigation }: any) => {
+const FeaturedNews = ({ navigation, route }: any) => {
+  const data = route.params
   const { dark } = useContext(Context) as TContext
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20 }}>
@@ -27,9 +28,7 @@ const FeaturedNews = ({ navigation }: any) => {
 
       {/* feature card */}
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
-        <FeaturedCard />
-        <FeaturedCard />
-        <FeaturedCard />
+        {data.map((item: any, i: React.Key | null | undefined) => <FeaturedCard headLines={item} key={i} />)}
       </ScrollView>
     </SafeAreaView>
   )

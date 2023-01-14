@@ -1,10 +1,10 @@
-import { ActivityIndicator, FlatList, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native'
-import React, { useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native'
+import React, { useContext, useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TContext, NewsData } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { useTheme } from '../../utils/theme'
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import { globalStyles } from '../../constants/styles'
 import { categories } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
@@ -12,6 +12,7 @@ import FeaturedCard from '../../components/FeaturedCard'
 import { StatusBar } from 'expo-status-bar'
 import { API_KEY } from '@env';
 import Loader from '../../components/Loader'
+import NoResults from '../../components/NoResults'
 
 
 const HomeScreen = ({ navigation }: any) => {
@@ -19,18 +20,30 @@ const HomeScreen = ({ navigation }: any) => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [filteredNews, setFilteredNews] = useState<NewsData[]>([])
   const [input, setInput] = useState("")
+  const [headLines, setHeadLines] = useState([])
 
+  let feature: any = headLines.slice(0, 1)[0]
 
   const fetchData = async () => {
-    const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
+    const url = `https://newsapi.org/v2/top-headlines?country=ng&category=${category}&apiKey=${API_KEY}`
+    const url1 = `https://newsapi.org/v2/top-headlines?country=ng&apiKey=${API_KEY}`
     await fetch(url)
       .then(response => response.json())
       .then(data => {
+        // setHeadLines(data.articles)
         setNews(data.articles)
         setFilteredNews(data.articles)
       })
       .catch(error => console.log(error))
+    await fetch(url1)
+      .then(response => response.json())
+      .then(data => {
+        setHeadLines(data.articles)
+      })
+      .catch(error => console.log(error))
+
   }
+
   useLayoutEffect(() => {
     fetchData()
   }, [country, category])
@@ -70,7 +83,7 @@ const HomeScreen = ({ navigation }: any) => {
           <TouchableOpacity
             onPress={() => {
               handleFilter(input)
-              navigation.navigate("Search", filteredNews)
+              // navigation.navigate("Search", filteredNews)
             }}
             style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="search-outline" size={18} color={useTheme(dark).defautlText} />
@@ -97,12 +110,13 @@ const HomeScreen = ({ navigation }: any) => {
                 {/* features header */}
                 <View style={{ ...styles.header }}>
                   <Text style={{ color: useTheme(dark).defautlText, fontWeight: "500" }}>Featured</Text>
-                  <Pressable onPress={() => navigation.navigate("FeaturedNews")}>
+                  <Pressable onPress={() => navigation.navigate("FeaturedNews", headLines)}>
                     <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>See all</Text>
                   </Pressable>
                 </View>
                 {/* feature card */}
-                <FeaturedCard />
+
+                <FeaturedCard headLines={feature} />
               </View>
 
               {/* news section */}
@@ -139,8 +153,10 @@ const HomeScreen = ({ navigation }: any) => {
 
                 {/* news cards */}
                 <View style={{ marginTop: 10 }}>
-                  {news &&
-                    news?.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
+                  {filteredNews.length > 0 ?
+                    filteredNews?.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
+                    :
+                    <NoResults />
                   }
                 </View>
               </View>

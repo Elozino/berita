@@ -11,7 +11,7 @@ const Loader = () => {
 
   setTimeout(() => {
     setNetworkError(true)
-  }, 10000);
+  }, 30000);
 
   if (networkError) {
     return (
@@ -24,7 +24,7 @@ const Loader = () => {
             width: 80, height: 80, borderRadius: 50,
             marginBottom: 20
           }}>
-          <FontAwesome5 name="frown" color={useTheme(dark).white} size={36} />
+          <FontAwesome5 name="frown" color={useTheme(dark).white} size={26} />
         </View>
         <Pressable style={{
           justifyContent: "center",

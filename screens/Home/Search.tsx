@@ -2,31 +2,20 @@ import { ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableO
 import React, { useContext, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTheme } from '../../utils/theme'
-import { TContext } from '../../types'
+import { NewsData, TContext } from '../../types'
 import { Context } from '../../context/ContextApp'
 import { FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { globalStyles } from '../../constants/styles'
 import { categories } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
+import NoResults from '../../components/NoResults'
 
 
 const Search = ({ navigation, route }: any) => {
-  const filters = route.params
+  const filters: NewsData[] = route.params
   const { dark, news } = useContext(Context) as TContext
   const [activeIndex, setActiveIndex] = useState(0)
 
-  console.log(filters)
-  const NoResults = () => {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", }}>
-        <View style={{ width: 100, height: 100, backgroundColor: useTheme(dark).appColor, borderRadius: 50, justifyContent: "center", alignItems: "center" }}>
-          <FontAwesome5 name="frown" size={40} color={useTheme(dark).white} />
-        </View>
-        <Text style={{ color: useTheme(dark).appColor, fontSize: 20, fontWeight: "400", marginTop: 20 }}>No results found</Text>
-        <Text style={{ color: useTheme(dark).defautlText, fontSize: 14, fontWeight: "400", marginTop: 5 }}>Please try another keyword</Text>
-      </View>
-    )
-  }
 
   return (
     <SafeAreaView style={{ backgroundColor: useTheme(dark).bg, flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
@@ -81,21 +70,23 @@ const Search = ({ navigation, route }: any) => {
       <View style={{ flex: 1 }}>
         <View style={{ ...styles.header, marginVertical: 10 }}>
           <Text style={{ color: useTheme(dark).defautlText, fontWeight: "500" }}>Search Results</Text>
-          <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>{filters.length} founds</Text>
+          <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>
+            {/* {filters.length}  */}
+            founds
+          </Text>
         </View>
-        {/* no results */}
-        {/* <NoResults /> */}
-
-        {/* yes results */}
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-        >
-          <View style={{ marginTop: 10 }}>
-            {
-              news.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
-            }
-          </View>
-        </ScrollView>
+        {news.length < 1 ?
+          <NoResults /> :
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+          >
+            <View style={{ marginTop: 10 }}>
+              {
+                news.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
+              }
+            </View>
+          </ScrollView>
+        }
       </View>
     </SafeAreaView>
   )
