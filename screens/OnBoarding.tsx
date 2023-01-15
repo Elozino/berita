@@ -52,7 +52,7 @@ const OnBoarding: FC = ({ navigation }: any) => {
               </View>
               <View style={{ height: 40, marginVertical: 30, alignItems: "center" }}>
                 <View>
-                  <TouchableOpacity style={{ alignItems: "center" }} onPress={() => navigation.navigate("Auth")}>
+                  <TouchableOpacity style={{ alignItems: "center" }} onPress={() => navigation.navigate("Home")}>
                     <Text style={{ fontSize: 16, color: "#fff" }}>Skip</Text>
                   </TouchableOpacity>
                   <View style={styles.dotsContainer}>
