@@ -19,5 +19,3 @@ const NoResults = () => {
 }
 
 export default NoResults
-
-const styles = StyleSheet.create({})

@@ -5,7 +5,12 @@ import { TContext } from '../types';
 import { useTheme } from '../utils/theme';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-const Loader = () => {
+
+interface IProps {
+  handleTryAgain: () => void;
+}
+
+const Loader = ({ handleTryAgain }: IProps) => {
   const { dark } = useContext(Context) as TContext
   const [networkError, setNetworkError] = useState(false)
 
@@ -33,7 +38,12 @@ const Loader = () => {
           paddingHorizontal: 20,
           paddingVertical: 5,
           borderRadius: 50
-        }}>
+        }}
+          onPress={() => {
+            setNetworkError(false)
+            handleTryAgain
+          }}
+        >
           <Text style={{ color: useTheme(dark).white, fontSize: 12, fontWeight: "bold" }}>Try again</Text>
         </Pressable>
       </>

@@ -9,6 +9,7 @@ import { globalStyles } from '../../constants/styles'
 import { categories } from '../../constants/data'
 import NewsCard from '../../components/NewsCard'
 import { API_KEY } from '@env';
+import Loader from '../../components/Loader'
 
 
 const AllNews = ({ navigation }: any) => {
@@ -99,7 +100,10 @@ const AllNews = ({ navigation }: any) => {
         >
           <View style={{ marginTop: 10 }}>
             {
-              filteredNews.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
+              filteredNews.length < 0 ? (
+                <Loader handleTryAgain={fetchData} />
+              ) :
+                filteredNews.map(((item, i) => <NewsCard navigation={navigation} key={i} data={item} />))
             }
           </View>
         </ScrollView>

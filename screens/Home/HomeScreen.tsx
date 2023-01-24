@@ -97,7 +97,7 @@ const HomeScreen = ({ navigation }: any) => {
       {
         news.length < 1 ? (
           <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <Loader />
+            <Loader handleTryAgain={fetchData} />
           </View>
         ) : (
           <>
