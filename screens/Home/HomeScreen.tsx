@@ -89,9 +89,9 @@ const HomeScreen = ({ navigation }: any) => {
             <Ionicons name="search-outline" size={18} color={useTheme(dark).defautlText} />
           </TouchableOpacity>
         </View>
-        <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, marginLeft: 10, }}>
+        {/* <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, marginLeft: 10, }}>
           <Ionicons name="filter" size={18} color={useTheme(dark).appColor} />
-        </TouchableHighlight>
+        </TouchableHighlight> */}
       </View>
 
       {
