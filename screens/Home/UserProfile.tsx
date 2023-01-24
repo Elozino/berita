@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Image, Linking, Pressable, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import React, { useContext } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TContext } from '../../types'
@@ -73,7 +73,9 @@ const UserProfile = ({ navigation }: any) => {
         </View>
       </View>
       {/* website */}
-      <Pressable style={{ marginTop: 20, backgroundColor: useTheme(dark).appColor, flexDirection: "row", justifyContent: "center", alignItems: "center", paddingVertical: 10, borderRadius: 30 }}>
+      <Pressable
+        onPress={() => Linking.openURL("www.google.com")}
+        style={{ marginTop: 20, backgroundColor: useTheme(dark).appColor, flexDirection: "row", justifyContent: "center", alignItems: "center", paddingVertical: 10, borderRadius: 30 }}>
         <MaterialCommunityIcons name="web" color={useTheme(dark).white} size={16} />
         <Text style={{ color: useTheme(dark).white }}> Website</Text>
       </Pressable>
