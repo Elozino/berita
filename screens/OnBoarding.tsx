@@ -9,7 +9,6 @@ import { TContext } from '../types';
 const OnBoarding: FC = ({ navigation }: any) => {
   const { dark } = useContext(Context) as TContext
   const [currentIndex, setCurrentIndex] = useState<number>(0)
-  // const navigation = useNavigation()
 
   const nextHandler = () => {
     let index = currentIndex
@@ -22,7 +21,7 @@ const OnBoarding: FC = ({ navigation }: any) => {
         break;
       case 2:
         setCurrentIndex(0)
-        navigation.navigate("Auth")
+        navigation.replace("Auth")
         break;
       default:
         setCurrentIndex(0)

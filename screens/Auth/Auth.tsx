@@ -31,7 +31,7 @@ const Auth: FC = ({ navigation }: any) => {
         .then((response) => {
           console.log("User account logged in!");
           console.log(response);
-          navigation.navigate("NewsType")
+          navigation.replace("NewsType")
           setUserAuthInput({ ...userAuthInput, email: "", password: "" })
           setLoading(false)
           setLoginMode("signin")
@@ -60,7 +60,7 @@ const Auth: FC = ({ navigation }: any) => {
         .then((response) => {
           console.log("User account logged in!");
           console.log(response);
-          navigation.navigate("Home")
+          navigation.replace("Home")
           setUserAuthInput({ ...userAuthInput, email: "", password: "" })
           setLoading(false)
           setLoginMode("signin")

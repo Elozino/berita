@@ -115,6 +115,21 @@ const EditUserProfile = ({ navigation }: any) => {
               </Pressable>
             </View>
           </View>
+          {/* bio */}
+          <View>
+            <Text style={{ color: useTheme(dark).defautlText }}>Bio</Text>
+            <View style={[globalStyles.inputWrapper, { backgroundColor: useTheme(dark).secBg, height: 80, borderRadius: 10, alignItems: "flex-start" }]}>
+              <TextInput
+                value={userInfo.bio}
+                onChangeText={(text) => handleUserInputs("bio", text)}
+                keyboardType="default"
+                multiline
+                placeholder='About Me'
+                placeholderTextColor={useTheme(dark).inputColor}
+                style={[globalStyles.input, { color: useTheme(dark).defautlText }]}
+              />
+            </View>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

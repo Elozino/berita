@@ -27,6 +27,7 @@ const ContextApp = ({ children }: any) => {
     country: "",
     newsType: "",
     website: "",
+    bio: ""
   })
 
   const [category, setCategory] = useState("general")
