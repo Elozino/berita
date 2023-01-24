@@ -32,8 +32,7 @@ const Search = ({ navigation, route }: any) => {
         setLoading(true)
         setSearchNews(data?.articles)
         setLoading(false)
-        // Keyboard.dismiss()
-      })
+       })
       .catch(error => console.log(error))
   }
   useEffect(() => {
