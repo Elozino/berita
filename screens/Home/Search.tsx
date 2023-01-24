@@ -32,7 +32,7 @@ const Search = ({ navigation, route }: any) => {
         setLoading(true)
         setSearchNews(data?.articles)
         setLoading(false)
-       })
+      })
       .catch(error => console.log(error))
   }
   useEffect(() => {
@@ -83,9 +83,9 @@ const Search = ({ navigation, route }: any) => {
             <Ionicons name="search-outline" size={18} color={useTheme(dark).defautlText} />
           </TouchableOpacity>
         </View>
-        <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, marginLeft: 10, }}>
+        {/* <TouchableHighlight style={{ backgroundColor: `${useTheme(dark).appColor}50`, borderRadius: 10, padding: 8, marginLeft: 10, }}>
           <Ionicons name="filter" size={18} color={useTheme(dark).appColor} />
-        </TouchableHighlight>
+        </TouchableHighlight> */}
       </View>
 
       {/* type of news slider */}
@@ -118,15 +118,14 @@ const Search = ({ navigation, route }: any) => {
       ) : (
         <>
           {/* search results */}
-          <View style={{ flex: 1 }}>
-            <View style={{ ...styles.header, marginVertical: 10 }}>
-              <Text style={{ color: useTheme(dark).defautlText, fontWeight: "500" }}>Search Results</Text>
-              <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>
-                {/* {filters.length}  */}
-                {searchNews && `${searchNews.length} found`}
-              </Text>
-            </View>
+          <View style={{ ...styles.header, marginVertical: 10 }}>
+            <Text style={{ color: useTheme(dark).defautlText, fontWeight: "500" }}>Search Results</Text>
+            <Text style={{ color: useTheme(dark).appColor, fontSize: 12 }}>
+              {/* {filters.length}  */}
+              {searchNews && `${searchNews.length} found`}
+            </Text>
           </View>
+
           {
             loading ? (
               <Loader handleTryAgain={fetchData} />
